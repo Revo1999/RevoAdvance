@@ -1,0 +1,368 @@
+[
+  {
+    "url": "https://docs.vulkan.org/",
+    "status": 200,
+    "final": "https://docs.vulkan.org/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://docs.vulkan.org/tutorial/latest/00_Introduction.html",
+    "status": 200,
+    "final": "https://docs.vulkan.org/tutorial/latest/00_Introduction.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://documentation-service.arm.com/static/5f4786a179ff4c392c0ff819",
+    "status": 200,
+    "final": "https://documentation-service.arm.com/static/5f4786a179ff4c392c0ff819",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://dotnet.github.io/Silk.NET/docs/",
+    "status": 200,
+    "final": "https://dotnet.github.io/Silk.NET/docs/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://dotnet.github.io/Silk.NET/docs/hlu/troubleshooting/",
+    "status": 200,
+    "final": "https://dotnet.github.io/Silk.NET/docs/hlu/troubleshooting/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://dotnet.microsoft.com/en-us/platform/support/policy",
+    "status": 200,
+    "final": "https://dotnet.microsoft.com/en-us/platform/support/policy",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/affine.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/affine.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/bitmaps.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/bitmaps.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/dma.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/dma.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/gfx.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/gfx.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/hardware.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/hardware.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/interrupts.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/interrupts.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/keys.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/keys.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/numbers.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/numbers.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/objbg.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/objbg.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/regbg.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/regbg.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/regobj.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/regobj.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/sndsqr.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/sndsqr.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/timers.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/timers.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://gbadev.net/tonc/video.html",
+    "status": 200,
+    "final": "https://gbadev.net/tonc/video.html",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://github.com/jsmolka/gba-tests",
+    "status": 200,
+    "final": "https://github.com/jsmolka/gba-tests",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://github.com/mgba-emu/suite",
+    "status": 200,
+    "final": "https://github.com/mgba-emu/suite",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.binary.binaryprimitives",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/api/system.buffers.binary.binaryprimitives?view=net-10.0",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/api/system.io.file",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/api/system.io.file?view=net-10.0",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/api/system.io.path",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/api/system.io.path?view=net-10.0",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/api/system.memory-1?view=net-10.0",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.memorymarshal?view=net-10.0",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/api/system.span-1",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/api/system.span-1?view=net-10.0",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/core/deploying/native-aot/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/core/diagnostics/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/core/tools/",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/core/tools/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/exceptions/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/arrays",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/integral-numeric-types",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/class",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/class",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/method-parameters",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/bitwise-and-shift-operators",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/patterns",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/stackalloc",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/stackalloc",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/switch-expression",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/switch-expression",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/fixed",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/fixed",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/unsafe-code",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/unsafe-code",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/properties",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/standard/assembly/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/fundamentals",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/standard/io/",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/standard/io/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/standard/managed-execution-process",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/standard/managed-execution-process",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://learn.microsoft.com/en-us/dotnet/standard/native-interop/",
+    "status": 200,
+    "final": "https://learn.microsoft.com/en-us/dotnet/standard/native-interop/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://mgba-emu.github.io/gbatek/",
+    "status": 200,
+    "final": "https://mgba-emu.github.io/gbatek/",
+    "missing_anchors": []
+  },
+  {
+    "url": "https://xunit.net/docs/getting-started/v2/getting-started",
+    "status": 200,
+    "final": "https://xunit.net/docs/getting-started/v2/getting-started",
+    "missing_anchors": []
+  }
+]

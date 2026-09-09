@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+.vs/
+TestResults/
+.work/
+roms/*
+!roms/README.md
+*.gba
+*.bios
+*.sav
+*.srm
+*.state
+gba_bios.bin
