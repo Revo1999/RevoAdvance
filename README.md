@@ -45,6 +45,6 @@ dotnet run --project src/Gba.Desktop
 dotnet test GbaEmulator.sln
 ```
 
-The current target is .NET 8 to match the available SDK. The [project guide](docs/csharp-and-dotnet/project-structure.md) documents the recommended move to .NET 10 LTS for long-term use; .NET 8 support ends in November 2026. See the [official support policy](https://dotnet.microsoft.com/en-us/platform/support/policy).
+The scaffold targets .NET 10 LTS. Install a stable .NET 10 SDK before building. The [project guide](docs/csharp-and-dotnet/project-structure.md) explains the project settings. See the [official support policy](https://dotnet.microsoft.com/en-us/platform/support/policy).
 
 Building verifies scaffolding only. There is no functioning emulator yet, and an empty test run proves no hardware behavior. [Validation notes](docs/VALIDATION.md) record what was checked when this repository was created.

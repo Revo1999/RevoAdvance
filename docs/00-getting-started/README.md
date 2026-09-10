@@ -13,7 +13,7 @@ You will write this emulator yourself. This repository gives you a reading path,
 
 ## Tools and first build
 
-Use a stable .NET SDK, a text editor or IDE, and Git when you want version history. The scaffold targets `net8.0` because .NET SDK 8.0.420 was installed here. The [project guide](../csharp-and-dotnet/project-structure.md) explains the planned .NET 10 LTS upgrade and every project setting.
+Use a stable .NET 10 SDK, a text editor or IDE, and Git when you want version history. The scaffold targets `net10.0`. The [project guide](../csharp-and-dotnet/project-structure.md) explains every project setting.
 
 ```text
 dotnet --info

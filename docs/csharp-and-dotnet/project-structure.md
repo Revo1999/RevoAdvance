@@ -6,7 +6,7 @@ The `.sln` file groups projects for tools; it is not a compiled program. Each `.
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
@@ -46,7 +46,7 @@ The second line is syntax notation: substitute a real project, package and stabl
 
 The single top-level statement in `Program.cs` is shorthand for a compiler-generated entry point. You may replace it with an explicit `Program.Main` later. There are no source files required in an empty class library.
 
-This scaffold targets .NET 8 to build with the SDK found on this machine. For a long-term project, move to .NET 10 LTS: install a stable SDK, change all three targets to `net10.0`, then restore/build/test. Do not enable preview language features. [.NET support policy](https://dotnet.microsoft.com/en-us/platform/support/policy) lists .NET 8 end of support in November 2026 and .NET 10 through November 2028; recheck it when upgrading.
+This scaffold targets .NET 10 LTS in all three projects. Install a stable .NET 10 SDK, then restore/build/test. Do not enable preview language features. [.NET support policy](https://dotnet.microsoft.com/en-us/platform/support/policy) lists .NET 10 support through November 2028; recheck it when upgrading.
 
 
 ## Where this meets the GBA

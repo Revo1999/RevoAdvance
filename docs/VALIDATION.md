@@ -32,6 +32,15 @@ Checked on 2026-09-09. These checks concern the learning repository and build sh
 
 The follow-up loading/saving lessons explicitly cover Open ROM, game session controls, cartridge persistence across app restarts and later save-state slots. Relative links and all external reference pages were rechecked after these documentation-only additions. No source or project settings changed; the build results above remain the scaffold validation record.
 
-The scaffold uses the installed .NET 8 SDK; the project guide explains moving to .NET 10 LTS. No SDK installation or renderer package selection was performed. The docs distinguish initial functional/scanline timing from later accuracy work. A real-game milestone is scoped to a chosen game and its prerequisites, not complete hardware compatibility.
+At the original validation, the scaffold used the installed .NET 8 SDK. No SDK installation or renderer package selection was performed at that time. The docs distinguish initial functional/scanline timing from later accuracy work. A real-game milestone is scoped to a chosen game and its prerequisites, not complete hardware compatibility.
 
 Start with [the first-session guide](00-getting-started/README.md). Your first low-byte exercise is intentionally unwritten.
+
+## .NET 10 upgrade validation (2026-09-10)
+
+- Retargeted all three projects to `net10.0` and updated setup documentation.
+- Validated using .NET SDK 10.0.401 installed in the local working environment.
+- Release build (including restore): passed with zero warnings/errors.
+- Release test discovery completed successfully; no tests are present, so no emulator behavior was verified.
+- Release desktop run printed the scaffold message and exited successfully.
+- Existing test package versions restored and built without changes.
