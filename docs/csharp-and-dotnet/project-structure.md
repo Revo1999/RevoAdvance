@@ -1,5 +1,73 @@
 # Projects, assemblies and the .NET CLI
 
+## Before the technical details
+
+If the tooling feels unfamiliar, first read [the stack introduction](../00-getting-started/before-you-code.md). A terminal command tells a tool what to do; C# statements go in `.cs` files; XML settings go in `.csproj` files. A solution groups projects, but only an executable project has an entry point you can run.
+
+## Syntax warm-up
+
+### Open PowerShell and prepare this lesson
+
+Open a PowerShell terminal (an IDE terminal is fine). Run this block once in each new terminal. The path below is your current checkout; if you move the repository, change that first path. All later commands on this page run from this folder, not from the lesson folder.
+
+```powershell
+Set-Location "C:\Users\victo\Desktop\RevoAdvance"
+if (Test-Path ".work/dotnet10/dotnet.exe") {
+    $env:PATH = "$PWD\.work\dotnet10;$env:PATH"
+}
+dotnet --version
+```
+
+Expect a version beginning with `10.`. The conditional uses the local SDK when present and changes PATH only for this terminal. If the command is missing or shows `8.`, complete the [.NET 10 setup](../00-getting-started/before-you-code.md#set-up-and-know-what-success-looks-like) before continuing.
+
+Create the console scratchpad only if it does not already exist:
+
+```powershell
+if (-not (Test-Path ".work/SyntaxLab/SyntaxLab.csproj")) {
+    dotnet new console --framework net10.0 --output .work/SyntaxLab
+}
+```
+
+If it already exists, no output from that block is expected. Keep using that project; do not create another project for each example. [Command troubleshooting](../00-getting-started/running-and-testing.md) explains errors and the difference between running and testing.
+
+Each example below is a complete, independent console program. Run one at a time in [SyntaxLab](../00-getting-started/before-you-code.md#a-separate-place-to-try-the-examples). These toy examples teach C#; the emulator implementation remains your exercise.
+
+### See what top-level statements replace
+
+**Run this example:** open `.work/SyntaxLab/Program.cs` in your editor, replace its entire contents with the C# block below, and save. Then run this in the PowerShell terminal prepared above:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Compare the program output with “Expected output” below. After changing an example, save and run the same command again. Do not paste the command into the C# file. This command compiles your saved changes automatically.
+
+```csharp
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Practice app");
+    }
+}
+```
+
+Expected output:
+
+```text
+Practice app
+```
+
+This is a complete alternative `Program.cs` with an explicit entry method. `static` means no Program instance is required. `void` means Main returns no value here. Replace the entire scratch file when trying it: do not leave earlier top-level statements alongside this entry point.
+
+### Try it before implementing
+
+Compare this with a file containing only `Console.WriteLine("Practice app");`. Both can be complete console programs. Next inspect the real three project files and name which produces Core, which runs, and which discovers tests.
+
+Continue with the detailed lesson below after you can explain your prediction.
+
 
 The `.sln` file groups projects for tools; it is not a compiled program. Each `.csproj` is an XML build recipe. A project usually produces an assembly (a `.dll`) containing compiled types and metadata. A namespace groups type names logically and can span files; it is not itself an assembly or folder.
 
@@ -67,6 +135,22 @@ Use the [refresher index](README.md) to revisit prerequisites. These pages use s
 ## Your implementation task
 
 Build the untouched solution, run the placeholder host, then inspect each project reference. Explain why removing the Desktop → Core reference would matter once Desktop uses a public Core type.
+
+## Run and check the project exercise
+
+In the repository-root terminal prepared above, save your files and run these commands separately:
+
+```powershell
+dotnet restore GbaEmulator.sln
+dotnet build GbaEmulator.sln
+dotnet run --project src/Gba.Desktop/Gba.Desktop.csproj
+dotnet test tests/Gba.Core.Tests/Gba.Core.Tests.csproj --list-tests
+dotnet test tests/Gba.Core.Tests/Gba.Core.Tests.csproj
+```
+
+Restore should complete, build should succeed, and the untouched Desktop prints its scaffold message and exits. An untouched test project has no cases; that is expected for inspecting the shell, but proves no hardware behavior. If you already wrote tests, their methods should appear and their assertions should pass. Stop at the first restore/compiler failure and resolve it before interpreting later results.
+
+Open `src/Gba.Core/Gba.Core.csproj`, `src/Gba.Desktop/Gba.Desktop.csproj` and `tests/Gba.Core.Tests/Gba.Core.Tests.csproj` in your editor to inspect the references. This exercise does not require removing references. After a deliberate project-setting edit, save and rerun restore/build and the relevant run/test command. Use the scratchpad command above only for the console syntax example.
 
 ## Definition of done
 

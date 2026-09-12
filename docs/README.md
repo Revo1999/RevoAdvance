@@ -1,7 +1,11 @@
 # Learning chapters
 
-Read [Start here](00-getting-started/README.md) first; use [ROADMAP](../ROADMAP.md) for implementation order.
+New to the stack or emulation? Read [Before you code](00-getting-started/before-you-code.md) first, then [Start here](00-getting-started/README.md); use [ROADMAP](../ROADMAP.md) for implementation order.
 
+Every numbered chapter and focused subchapter begins with an introduction, two independent C# warm-ups with expected output, and a practice prompt. Run the examples in the separate [SyntaxLab scratchpad](00-getting-started/before-you-code.md#a-separate-place-to-try-the-examples), then return to the hardware rules and your implementation task. You can split any chapter over several sessions.
+
+- [Before you code: tools, setup and how to learn](00-getting-started/before-you-code.md)
+- [Exactly how to run and test: commands and troubleshooting](00-getting-started/running-and-testing.md)
 - [Start here: one small experiment](00-getting-started/README.md)
 - [The GBA as an interconnected machine](01-system-overview/README.md)
 - [Memory map: addresses are routes](02-memory-map/README.md)

@@ -1,5 +1,101 @@
 # Vulkan: presenting the finished framebuffer
 
+## Before the technical details
+
+This is a later lesson. You can learn the CPU and produce test pixels before learning Vulkan. The GPU is your PC graphics processor. An image stores pixels, a queue accepts GPU work, and a swapchain provides images for presentation. Creating resources, submitting work and waiting for completion are distinct actions. Silk.NET exposes the API to C#; GLFW supplies the planned window/input backend. Start with layout and lifetime, not a wall of native calls.
+
+## Syntax warm-up
+
+### Open PowerShell and prepare this lesson
+
+Open a PowerShell terminal (an IDE terminal is fine). Run this block once in each new terminal. The path below is your current checkout; if you move the repository, change that first path. All later commands on this page run from this folder, not from the lesson folder.
+
+```powershell
+Set-Location "C:\Users\victo\Desktop\RevoAdvance"
+if (Test-Path ".work/dotnet10/dotnet.exe") {
+    $env:PATH = "$PWD\.work\dotnet10;$env:PATH"
+}
+dotnet --version
+```
+
+Expect a version beginning with `10.`. The conditional uses the local SDK when present and changes PATH only for this terminal. If the command is missing or shows `8.`, complete the [.NET 10 setup](../00-getting-started/before-you-code.md#set-up-and-know-what-success-looks-like) before continuing.
+
+Create the console scratchpad only if it does not already exist:
+
+```powershell
+if (-not (Test-Path ".work/SyntaxLab/SyntaxLab.csproj")) {
+    dotnet new console --framework net10.0 --output .work/SyntaxLab
+}
+```
+
+If it already exists, no output from that block is expected. Keep using that project; do not create another project for each example. [Command troubleshooting](../00-getting-started/running-and-testing.md) explains errors and the difference between running and testing.
+
+Each example below is a complete, independent console program. Run one at a time in [SyntaxLab](../00-getting-started/before-you-code.md#a-separate-place-to-try-the-examples). These toy examples teach C#; the emulator implementation remains your exercise.
+
+### Calculate a tiny image storage budget
+
+**Run this example:** open `.work/SyntaxLab/Program.cs` in your editor, replace its entire contents with the C# block below, and save. Then run this in the PowerShell terminal prepared above:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Compare the program output with “Expected output” below. After changing an example, save and run the same command again. Do not paste the command into the C# file. This command compiles your saved changes automatically.
+
+```csharp
+int width = 4;
+int height = 3;
+int bytesPerPixel = 4;
+int rowBytes = width * bytesPerPixel;
+Console.WriteLine(rowBytes);
+Console.WriteLine(rowBytes * height);
+```
+
+Expected output:
+
+```text
+16
+48
+```
+
+For this tightly packed toy image, each row needs sixteen bytes and the image needs forty-eight. Row stride is the distance between row starts; an API can require padding, so do not assume every real image uses this exact layout.
+
+### Observe deterministic cleanup with a managed stream
+
+**Run this example:** open `.work/SyntaxLab/Program.cs` in your editor, replace its entire contents with the C# block below, and save. Then run this in the PowerShell terminal prepared above:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Compare the program output with “Expected output” below. After changing an example, save and run the same command again. Do not paste the command into the C# file. This command compiles your saved changes automatically.
+
+```csharp
+using System.IO;
+
+using (MemoryStream stream = new MemoryStream())
+{
+    stream.WriteByte(7);
+    Console.WriteLine(stream.Length);
+}
+Console.WriteLine("scope finished");
+```
+
+Expected output:
+
+```text
+1
+scope finished
+```
+
+The first `using` imports a namespace. The `using (...)` block disposes the resource when the block is exited. It illustrates lifetime, but Vulkan resources also require explicit ownership and completion of GPU work before destruction. This stream has no GPU or disk effects.
+
+### Try it before implementing
+
+Sketch who creates, uses and releases a resource. Then list window, surface, device, swapchain and upload as separate reading topics. Follow the synthetic-image exercise only after those names make sense; no Vulkan implementation is supplied.
+
+Continue with the detailed lesson below after you can explain your prediction.
+
 
 ## The boundary
 
@@ -48,6 +144,27 @@ Work through the local explanations linked above, then use their paired official
 ## Your implementation task
 
 Build the synthetic host presentation yourself, then connect the PPU buffer. No Vulkan implementation is supplied here.
+
+## Run and check your own implementation
+
+Use the repository-root PowerShell terminal prepared above. Save your changes and run these separately before the manual host check:
+
+```powershell
+dotnet build GbaEmulator.sln
+dotnet test tests/Gba.Core.Tests/Gba.Core.Tests.csproj
+```
+
+Expect a successful build and zero failures in the Core tests you have written. The untouched scaffold has no tests, so an empty test result proves no behavior. These tests do not launch or validate the desktop UI.
+
+Implement the synthetic-grid host exercise in `src/Gba.Desktop`, then run:
+
+```powershell
+dotnet run --project src/Gba.Desktop/Gba.Desktop.csproj
+```
+
+Before you implement the host, this prints only the scaffold message and exits. After you implement it, expect your grid window. Inspect channels, orientation and scaling; resize, minimize/restore, then close it. The terminal should return to its prompt. Vulkan validation must be configured in your own host setup at this later milestone; `dotnet test` does not enable it or prove GPU lifetime correctness. The core numeric image checks remain separate from this manual window check.
+
+After changes, save and repeat the same commands and manual steps. Record what you actually observed, including any feature you have not implemented yet.
 
 ## Definition of done
 

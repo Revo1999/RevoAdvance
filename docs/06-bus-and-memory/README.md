@@ -1,5 +1,104 @@
 # The bus: behavior beyond storage
 
+## Before the technical details
+
+A bus is the route used to communicate with memory and devices. Reading ordinary storage can simply return a value; reading a device can have special rules. A side effect is any additional change caused by an operation. Start by noticing the difference between a stored value and a method that changes state.
+
+## Syntax warm-up
+
+### Open PowerShell and prepare this lesson
+
+Open a PowerShell terminal (an IDE terminal is fine). Run this block once in each new terminal. The path below is your current checkout; if you move the repository, change that first path. All later commands on this page run from this folder, not from the lesson folder.
+
+```powershell
+Set-Location "C:\Users\victo\Desktop\RevoAdvance"
+if (Test-Path ".work/dotnet10/dotnet.exe") {
+    $env:PATH = "$PWD\.work\dotnet10;$env:PATH"
+}
+dotnet --version
+```
+
+Expect a version beginning with `10.`. The conditional uses the local SDK when present and changes PATH only for this terminal. If the command is missing or shows `8.`, complete the [.NET 10 setup](../00-getting-started/before-you-code.md#set-up-and-know-what-success-looks-like) before continuing.
+
+Create the console scratchpad only if it does not already exist:
+
+```powershell
+if (-not (Test-Path ".work/SyntaxLab/SyntaxLab.csproj")) {
+    dotnet new console --framework net10.0 --output .work/SyntaxLab
+}
+```
+
+If it already exists, no output from that block is expected. Keep using that project; do not create another project for each example. [Command troubleshooting](../00-getting-started/running-and-testing.md) explains errors and the difference between running and testing.
+
+Each example below is a complete, independent console program. Run one at a time in [SyntaxLab](../00-getting-started/before-you-code.md#a-separate-place-to-try-the-examples). These toy examples teach C#; the emulator implementation remains your exercise.
+
+### A method can have a side effect
+
+**Run this example:** open `.work/SyntaxLab/Program.cs` in your editor, replace its entire contents with the C# block below, and save. Then run this in the PowerShell terminal prepared above:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Compare the program output with “Expected output” below. After changing an example, save and run the same command again. Do not paste the command into the C# file. This command compiles your saved changes automatically.
+
+```csharp
+TicketDesk desk = new TicketDesk();
+Console.WriteLine(desk.Take());
+Console.WriteLine(desk.Take());
+
+class TicketDesk
+{
+    private int next = 4;
+    public int Take()
+    {
+        int result = next;
+        next++;
+        return result;
+    }
+}
+```
+
+Expected output:
+
+```text
+4
+5
+```
+
+`private` keeps the counter inside the object. `next++` adds one after the result has been saved. Two identical calls produce different results because the object remembers a change. A device access needs its own documented contract.
+
+### Check a range before using a position
+
+**Run this example:** open `.work/SyntaxLab/Program.cs` in your editor, replace its entire contents with the C# block below, and save. Then run this in the PowerShell terminal prepared above:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Compare the program output with “Expected output” below. After changing an example, save and run the same command again. Do not paste the command into the C# file. This command compiles your saved changes automatically.
+
+```csharp
+int position = 4;
+int length = 4;
+bool inside = position >= 0 && position < length;
+Console.WriteLine(inside);
+```
+
+Expected output:
+
+```text
+False
+```
+
+`>=` includes the lower boundary; `<` excludes the upper boundary. `&&` combines Boolean questions, while bitwise `&` is used for integer bit patterns. Bounds are one concern; device width and timing rules are additional concerns.
+
+### Try it before implementing
+
+Try positions -1, 0, 3 and 4. Then list the state before and after each ticket call. In the bus lesson, ask separately what is stored, what an access changes, and how long that access takes.
+
+Continue with the detailed lesson below after you can explain your prediction.
+
 
 ## In the real GBA
 
@@ -48,6 +147,23 @@ Work through the local explanations linked above, then use their paired official
 ## Your implementation task
 
 Extend your RAM exercise to explicit widths, one documented mirror and one side-effecting register. Keep storage tests separate from device-access tests.
+
+## Run and check your own implementation
+
+Use the PowerShell terminal prepared at the top of this page, in the repository root. Write your tests in `tests/Gba.Core.Tests/BusTests.cs` with a **public class named `BusTests`** and public methods marked `[Fact]` or `[Theory]`. Add `using Xunit;` at the top. The [complete xUnit examples](../csharp-and-dotnet/testing.md#a-complete-fact-example-test-project-only) show the file structure; write the actual test bodies yourself. Test read/write widths, boundaries and the specific device side effects you implemented. Emulator logic belongs in `src/Gba.Core`; the first low-byte practice needs no emulator component.
+
+Save all edited files. Run each command separately, stopping if a command fails:
+
+```powershell
+dotnet build GbaEmulator.sln
+dotnet test tests/Gba.Core.Tests/Gba.Core.Tests.csproj --list-tests
+dotnet test tests/Gba.Core.Tests/Gba.Core.Tests.csproj --filter "FullyQualifiedName~BusTests" --logger "console;verbosity=normal"
+dotnet test tests/Gba.Core.Tests/Gba.Core.Tests.csproj
+```
+
+The build should succeed. The list must include your new test methods. The filtered run must execute your `BusTests` cases and report zero failures; the last command runs **all** Core tests to catch regressions. The count depends on the cases you wrote. “No tests available” or “No test matches” is not a pass: check the saved file, public class/method, attribute and filter spelling. If you choose a different class name, change the filter to match it.
+
+After each code or test edit, save and rerun the filtered command. When it passes, run the full test command again. For your first test, deliberately change one expected value, rerun to see a failed assertion, restore the correct value and rerun to see a pass. Do not leave the deliberately wrong expectation in your work. A compiler error must be fixed before you can evaluate assertions. These commands build automatically; do not use `--no-build` while learning because it can execute stale code.
 
 ## Definition of done
 

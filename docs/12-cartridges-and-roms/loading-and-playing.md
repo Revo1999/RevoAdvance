@@ -1,5 +1,100 @@
 # Load a .gba file and play it
 
+## Before the technical details
+
+Opening a file gives your host program bytes; it does not execute the game. A session is the host application state for the currently selected game. Start by learning how a path is represented and how a console program receives arguments. You can practice those without a ROM or file picker.
+
+## Syntax warm-up
+
+### Open PowerShell and prepare this lesson
+
+Open a PowerShell terminal (an IDE terminal is fine). Run this block once in each new terminal. The path below is your current checkout; if you move the repository, change that first path. All later commands on this page run from this folder, not from the lesson folder.
+
+```powershell
+Set-Location "C:\Users\victo\Desktop\RevoAdvance"
+if (Test-Path ".work/dotnet10/dotnet.exe") {
+    $env:PATH = "$PWD\.work\dotnet10;$env:PATH"
+}
+dotnet --version
+```
+
+Expect a version beginning with `10.`. The conditional uses the local SDK when present and changes PATH only for this terminal. If the command is missing or shows `8.`, complete the [.NET 10 setup](../00-getting-started/before-you-code.md#set-up-and-know-what-success-looks-like) before continuing.
+
+Create the console scratchpad only if it does not already exist:
+
+```powershell
+if (-not (Test-Path ".work/SyntaxLab/SyntaxLab.csproj")) {
+    dotnet new console --framework net10.0 --output .work/SyntaxLab
+}
+```
+
+If it already exists, no output from that block is expected. Keep using that project; do not create another project for each example. [Command troubleshooting](../00-getting-started/running-and-testing.md) explains errors and the difference between running and testing.
+
+Each example below is a complete, independent console program. Run one at a time in [SyntaxLab](../00-getting-started/before-you-code.md#a-separate-place-to-try-the-examples). These toy examples teach C#; the emulator implementation remains your exercise.
+
+### Inspect a path without reading a file
+
+**Run this example:** open `.work/SyntaxLab/Program.cs` in your editor, replace its entire contents with the C# block below, and save. Then run this in the PowerShell terminal prepared above:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Compare the program output with “Expected output” below. After changing an example, save and run the same command again. Do not paste the command into the C# file. This command compiles your saved changes automatically.
+
+```csharp
+using System.IO;
+
+string selected = Path.Combine("practice games", "sample.gba");
+Console.WriteLine(Path.GetFileName(selected));
+Console.WriteLine(Path.GetExtension(selected));
+```
+
+Expected output:
+
+```text
+sample.gba
+.gba
+```
+
+`Path.Combine` constructs a path; `GetFileName` and `GetExtension` inspect its text. They neither open nor validate a ROM. A filename extension is a label, not proof of valid content.
+
+### Handle an absent command-line argument
+
+**Run this example:** open `.work/SyntaxLab/Program.cs` in your editor, replace its entire contents with the C# block below, and save. Then run this in the PowerShell terminal prepared above:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Compare the program output with “Expected output” below. After changing an example, save and run the same command again. Do not paste the command into the C# file. This command compiles your saved changes automatically.
+
+```csharp
+string[] supplied = Array.Empty<string>();
+if (supplied.Length == 0)
+{
+    Console.WriteLine("No path supplied");
+}
+else
+{
+    Console.WriteLine(supplied[0]);
+}
+```
+
+Expected output:
+
+```text
+No path supplied
+```
+
+`Array.Empty<string>()` gives an empty string array. The condition prevents indexing an absent first item. This uses simulated arguments; a top-level console program receives real arguments in `args`. Try `dotnet run --project .work/SyntaxLab -- "practice games/sample.gba"` after adapting your own experiment to `args`; quotes keep a spaced path together.
+
+### Try it before implementing
+
+Change `supplied` to a one-element array containing a path with spaces. Explain which code can run without touching a disk. For the real task below, first report selected file metadata; treat successful game execution as a later milestone.
+
+Continue with the detailed lesson below after you can explain your prediction.
+
 Loading your own `.gba` games, playing them and continuing saved progress are required goals of this emulator. Diagnostic ROMs are stepping stones toward that goal. The current repository is still a learning scaffold; these features are exercises you will implement.
 
 ## In the real GBA
@@ -69,6 +164,27 @@ Begin with [file I/O](../csharp-and-dotnet/file-io.md), then revisit arrays and 
 ## Your implementation task
 
 First accept a `.gba` path and show its filename, byte length and a clear load result. Leave execution disconnected until that works. Later add Open ROM, session controls and an integrated game test. Write all code yourself.
+
+## Run and check your own implementation
+
+Use the repository-root PowerShell terminal prepared above. Save your changes and run these separately before the manual host check:
+
+```powershell
+dotnet build GbaEmulator.sln
+dotnet test tests/Gba.Core.Tests/Gba.Core.Tests.csproj
+```
+
+Expect a successful build and zero failures in the Core tests you have written. The untouched scaffold has no tests, so an empty test result proves no behavior. These tests do not launch or validate the desktop UI.
+
+After you implement the command-line loading step in `src/Gba.Desktop`, run:
+
+```powershell
+dotnet run --project src/Gba.Desktop/Gba.Desktop.csproj -- "C:\Games\Your Game.gba"
+```
+
+Replace `C:\Games\Your Game.gba` with the full path of your own ROM and keep the quotes for spaces. `--` ends dotnet options and passes the following path to your program's `args`. Expect the filename, size and load result you implemented. Repeat with a nonexistent path to verify your error report. File-dialog cancellation, pause/reset and changing games become manual checks only after you implement those controls. A successful load does not yet imply a playable game.
+
+After changes, save and repeat the same commands and manual steps. Record what you actually observed, including any feature you have not implemented yet.
 
 ## Definition of done
 

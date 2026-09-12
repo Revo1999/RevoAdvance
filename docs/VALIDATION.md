@@ -1,5 +1,23 @@
 # Scaffold validation
 
+## Beginner lesson expansion (2026-09-12)
+
+- Follow-up: all 46 lessons include explicit PowerShell setup, console file/run instructions, and commands or a clearly labeled paper check for their exercises. Hardware tests have suggested class names, matching filters, discovery/full-suite commands and expected outcomes. Host lessons describe manual run/ROM/save checks separately.
+- Added [Exactly how to run and test](00-getting-started/running-and-testing.md), including SDK selection, working directory, saving files, command arguments, discovery failures and stale builds. Checked that all 74 previously verified example bodies remain unchanged and all local file links resolve.
+- Exercised the documented terminal SDK selection and conditional SyntaxLab creation/run. xUnit discovery listed all three practice cases, the ArithmeticExamples filter ran two cases, and the full practice project ran three passing cases.
+
+- Synchronized this checkout with `Revo1999/RevoAdvance` main at `386d0e7` (`Upgrade scaffold to .NET 10 LTS`); a subsequent fast-forward-only pull reported up to date. The previous local folder had no Git metadata and was backed up before synchronization.
+- Added a beginner setup/stack guide and expanded all 18 main chapters, 9 focused subchapters and 19 C#/.NET lessons. Hardware lessons now include two complete console warm-ups each; language lessons include an additional complete warm-up. Introductions, output walkthroughs and small practice prompts precede the original technical material and implementation tasks.
+- Extracted all 74 new complete console examples directly from the Markdown into separate temporary projects. Built them with .NET SDK 10.0.401 targeting `net10.0`: zero warnings/errors. All 74 executions matched the documented output.
+- Copied the documented generic Fact and Theory examples into a separate temporary xUnit v2 project using the scaffold's package versions. Three cases passed. A deliberately incorrect Fact expectation produced one assertion failure; restoring it returned all three cases to passing.
+- Release solution build: zero warnings/errors. Desktop run: printed the scaffold message and exited. Repository test discovery still reports no tests, as expected; it provides no emulator correctness evidence.
+- Checked local Markdown file destinations and documentation whitespace, accounting for existing CRLF files. No broken local file links. Existing SVG/Mermaid diagrams were not changed or re-rendered. External links were not exhaustively revalidated in this pass.
+- No tracked emulator source, test source, project settings, packages or solution files changed. Scratch examples and validation tools live under ignored `.work`; the only tracked C# file remains the Desktop placeholder. The actual emulator exercises remain unwritten.
+
+The validation SDK is local to this checkout at `.work/dotnet10/dotnet.exe`; it was not added to the global PATH. For this checkout, prefix build/run/test commands with `& .work/dotnet10/dotnet.exe` in PowerShell to use that SDK. A fresh clone should follow the normal .NET 10 installation instructions in [Before you code](00-getting-started/before-you-code.md).
+
+## Original scaffold checks
+
 Checked on 2026-09-09. These checks concern the learning repository and build shell; they do not establish emulator correctness.
 
 ## Build and source boundary

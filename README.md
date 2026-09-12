@@ -1,6 +1,10 @@
 # RevoAdvance — build your own GBA emulator
 
-**Read [Start here](docs/00-getting-started/README.md) first.** Your first coding exercise is one small xUnit test about extracting the low byte of an unsigned integer.
+**Begin with [Before you code](docs/00-getting-started/before-you-code.md)** for a plain-language introduction to the tools and a separate C# practice project. Then follow [Start here](docs/00-getting-started/README.md). Your first emulator-related exercise is one small xUnit test about extracting the low byte of an unsigned integer.
+
+Some C# experience is enough to start. Each hardware lesson now opens with two small, runnable syntax examples, expected output, explanations and a practice step. The C# lessons add guided warm-ups too. Try one example at a time, predict a small change, then approach the unsolved emulator exercise. The examples use ordinary toy data; you write the actual emulator.
+
+Each lesson tells you where to save your work, which PowerShell command to run, what should happen and what to rerun after an edit. Keep the [run and test guide](docs/00-getting-started/running-and-testing.md) nearby for setup, test filters and troubleshooting.
 
 This is a learning repository for a Game Boy Advance emulator in C# and modern .NET, with eventual Vulkan output through Silk.NET and a GLFW host backend. No SDL and no C++ application code. You write the emulator; the repository supplies the path, explanations and empty project scaffolding.
 

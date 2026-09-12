@@ -1,5 +1,98 @@
 # The GBA as an interconnected machine
 
+## Before the technical details
+
+Think of the machine as several workers sharing a notebook. The CPU follows instructions; memory remembers bytes; the PPU turns video data into pixels. A register is a small named storage location, while a peripheral is a device around the CPU. Host means your PC; guest means the GBA you are modeling. Your first task is an ownership drawing, not a collection of complicated classes.
+
+## Syntax warm-up
+
+### Open PowerShell and prepare this lesson
+
+Open a PowerShell terminal (an IDE terminal is fine). Run this block once in each new terminal. The path below is your current checkout; if you move the repository, change that first path. All later commands on this page run from this folder, not from the lesson folder.
+
+```powershell
+Set-Location "C:\Users\victo\Desktop\RevoAdvance"
+if (Test-Path ".work/dotnet10/dotnet.exe") {
+    $env:PATH = "$PWD\.work\dotnet10;$env:PATH"
+}
+dotnet --version
+```
+
+Expect a version beginning with `10.`. The conditional uses the local SDK when present and changes PATH only for this terminal. If the command is missing or shows `8.`, complete the [.NET 10 setup](../00-getting-started/before-you-code.md#set-up-and-know-what-success-looks-like) before continuing.
+
+Create the console scratchpad only if it does not already exist:
+
+```powershell
+if (-not (Test-Path ".work/SyntaxLab/SyntaxLab.csproj")) {
+    dotnet new console --framework net10.0 --output .work/SyntaxLab
+}
+```
+
+If it already exists, no output from that block is expected. Keep using that project; do not create another project for each example. [Command troubleshooting](../00-getting-started/running-and-testing.md) explains errors and the difference between running and testing.
+
+Each example below is a complete, independent console program. Run one at a time in [SyntaxLab](../00-getting-started/before-you-code.md#a-separate-place-to-try-the-examples). These toy examples teach C#; the emulator implementation remains your exercise.
+
+### Two names can point to the same object
+
+**Run this example:** open `.work/SyntaxLab/Program.cs` in your editor, replace its entire contents with the C# block below, and save. Then run this in the PowerShell terminal prepared above:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Compare the program output with “Expected output” below. After changing an example, save and run the same command again. Do not paste the command into the C# file. This command compiles your saved changes automatically.
+
+```csharp
+Notebook owner = new Notebook();
+Notebook reader = owner;
+owner.Pages = 6;
+Console.WriteLine(reader.Pages);
+
+class Notebook
+{
+    public int Pages;
+}
+```
+
+Expected output:
+
+```text
+6
+```
+
+`new` creates one object. `reader = owner` copies its reference, so both variables reach the same notebook. `public` allows the example to access the field. This is why ownership matters when several parts of a program share memory.
+
+### A copied number is independent
+
+**Run this example:** open `.work/SyntaxLab/Program.cs` in your editor, replace its entire contents with the C# block below, and save. Then run this in the PowerShell terminal prepared above:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Compare the program output with “Expected output” below. After changing an example, save and run the same command again. Do not paste the command into the C# file. This command compiles your saved changes automatically.
+
+```csharp
+int first = 6;
+int second = first;
+first = 9;
+Console.WriteLine(second);
+```
+
+Expected output:
+
+```text
+6
+```
+
+An `int` assignment copies the value. Updating `first` does not update `second`. Compare this result with the shared object above before choosing how to represent state.
+
+### Try it before implementing
+
+Predict what happens if you change `reader.Pages` instead. Draw one box for the object and two arrows for its references. Then draw separate boxes for the two integers. Use these pictures when reading the component ownership table.
+
+Continue with the detailed lesson below after you can explain your prediction.
+
 
 ## In the real GBA
 
@@ -67,6 +160,16 @@ Work through the local explanations linked above, then use their paired official
 ## Your implementation task
 
 Draw your own ownership map and annotate who writes RAM, video state and IRQ requests. No new source code is required for this overview.
+
+## Check this lesson's exercise
+
+This implementation task is a written explanation or diagram; no new emulator code or test file is required here. Finish the paper task and compare it with the definition of done below. To repeat the **safe console warm-up**, save its code in `.work/SyntaxLab/Program.cs` and run from the prepared repository-root terminal:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Expect the output shown above. The advanced fragments are explanatory and may need additional setup; they are not required runnable exercises. Do not treat a successful console run as evidence for a hardware implementation.
 
 ## Definition of done
 

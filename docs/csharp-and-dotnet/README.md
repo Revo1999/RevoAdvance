@@ -1,6 +1,14 @@
 # C# and .NET, only when you need them
 
-Start with [integer types](integer-types.md), [bitwise operations](bitwise-operations.md), [testing](testing.md) and [project structure](project-structure.md). Return to hardware immediately after the small exercise. This is a contextual refresher, not a language survey.
+Start with [the tools and practice-project guide](../00-getting-started/before-you-code.md), then [integer types](integer-types.md), [bitwise operations](bitwise-operations.md), [testing](testing.md) and [project structure](project-structure.md). Return to hardware after the small exercise. Each refresher now opens with a complete warm-up, its expected output, a syntax walkthrough and something to try yourself. You can revisit these pages whenever a line in a hardware lesson is unfamiliar.
+
+## A manageable first route
+
+For exact terminal commands and error explanations, use [Exactly how to run and test](../00-getting-started/running-and-testing.md). Every lesson repeats the console setup and tells you how to run its practice; xUnit exercises include a separate test-project command.
+
+Read numbers → bits → a test → arrays. After that, read classes/properties/enums when you need to represent state, and switch when you need to choose behavior. Methods, top-level statements, assignments and Boolean comparisons are introduced in [Start here](../00-getting-started/README.md). You do not need pointers, MemoryMarshal, native interop or performance tuning to complete your first memory exercise.
+
+The complete console warm-ups replace the whole scratchpad `Program.cs`. Older short snippets in the detailed explanations can be fragments, so read their surrounding context. The xUnit examples are explicitly labeled for a test project. When syntax feels unfamiliar, say what each type, operator and method call does before relating it to hardware.
 
 ## Reading map
 

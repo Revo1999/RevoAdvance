@@ -1,5 +1,93 @@
 # PPU: turning video data into a picture
 
+## Before the technical details
+
+A pixel is one location in a picture. A framebuffer is a collection of finished pixel values. The PPU is the guest hardware that interprets video data to choose those values; Vulkan eventually shows the completed image on your PC. Begin with tiny rows and columns before any graphics API.
+
+## Syntax warm-up
+
+### Open PowerShell and prepare this lesson
+
+Open a PowerShell terminal (an IDE terminal is fine). Run this block once in each new terminal. The path below is your current checkout; if you move the repository, change that first path. All later commands on this page run from this folder, not from the lesson folder.
+
+```powershell
+Set-Location "C:\Users\victo\Desktop\RevoAdvance"
+if (Test-Path ".work/dotnet10/dotnet.exe") {
+    $env:PATH = "$PWD\.work\dotnet10;$env:PATH"
+}
+dotnet --version
+```
+
+Expect a version beginning with `10.`. The conditional uses the local SDK when present and changes PATH only for this terminal. If the command is missing or shows `8.`, complete the [.NET 10 setup](../00-getting-started/before-you-code.md#set-up-and-know-what-success-looks-like) before continuing.
+
+Create the console scratchpad only if it does not already exist:
+
+```powershell
+if (-not (Test-Path ".work/SyntaxLab/SyntaxLab.csproj")) {
+    dotnet new console --framework net10.0 --output .work/SyntaxLab
+}
+```
+
+If it already exists, no output from that block is expected. Keep using that project; do not create another project for each example. [Command troubleshooting](../00-getting-started/running-and-testing.md) explains errors and the difference between running and testing.
+
+Each example below is a complete, independent console program. Run one at a time in [SyntaxLab](../00-getting-started/before-you-code.md#a-separate-place-to-try-the-examples). These toy examples teach C#; the emulator implementation remains your exercise.
+
+### Flatten a tiny grid
+
+**Run this example:** open `.work/SyntaxLab/Program.cs` in your editor, replace its entire contents with the C# block below, and save. Then run this in the PowerShell terminal prepared above:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Compare the program output with “Expected output” below. After changing an example, save and run the same command again. Do not paste the command into the C# file. This command compiles your saved changes automatically.
+
+```csharp
+int width = 3;
+int x = 1;
+int y = 1;
+int position = y * width + x;
+Console.WriteLine(position);
+```
+
+Expected output:
+
+```text
+4
+```
+
+The first row occupies positions 0–2; the next row starts at 3. Multiplication skips whole rows and addition moves within the chosen row. This is a generic three-column grid, not a PPU renderer.
+
+### Retrieve a named colour
+
+**Run this example:** open `.work/SyntaxLab/Program.cs` in your editor, replace its entire contents with the C# block below, and save. Then run this in the PowerShell terminal prepared above:
+
+```powershell
+dotnet run --project .work/SyntaxLab/SyntaxLab.csproj
+```
+
+Compare the program output with “Expected output” below. After changing an example, save and run the same command again. Do not paste the command into the C# file. This command compiles your saved changes automatically.
+
+```csharp
+string[] colours = { "red", "green", "blue" };
+int selected = 2;
+Console.WriteLine(colours[selected]);
+```
+
+Expected output:
+
+```text
+blue
+```
+
+An index can refer to a colour rather than being a colour itself. That distinction prepares you for palettes. An array of colour names is just a teaching aid; actual pixel formats use numeric channel values.
+
+### Try it before implementing
+
+Draw a 3-by-2 grid numbered 0 through 5. Predict the position of the bottom-right cell and explain why x = 3 is outside the row. Follow the bitmap lesson before moving to tiles or effects.
+
+Continue with the detailed lesson below after you can explain your prediction.
+
 
 ## In the real GBA
 
@@ -63,6 +151,23 @@ Work through the local explanations linked above, then use their paired official
 ## Your implementation task
 
 Follow the bitmap chapter to build a synthetic Mode 3 scene yourself. Test corner pixels and channel values before integrating the CPU or Vulkan.
+
+## Run and check your own implementation
+
+Use the PowerShell terminal prepared at the top of this page, in the repository root. Write your tests in `tests/Gba.Core.Tests/PpuTests.cs` with a **public class named `PpuTests`** and public methods marked `[Fact]` or `[Theory]`. Add `using Xunit;` at the top. The [complete xUnit examples](../csharp-and-dotnet/testing.md#a-complete-fact-example-test-project-only) show the file structure; write the actual test bodies yourself. Test exact expected pixels from a small synthetic fixture without opening a window. Emulator logic belongs in `src/Gba.Core`; the first low-byte practice needs no emulator component.
+
+Save all edited files. Run each command separately, stopping if a command fails:
+
+```powershell
+dotnet build GbaEmulator.sln
+dotnet test tests/Gba.Core.Tests/Gba.Core.Tests.csproj --list-tests
+dotnet test tests/Gba.Core.Tests/Gba.Core.Tests.csproj --filter "FullyQualifiedName~PpuTests" --logger "console;verbosity=normal"
+dotnet test tests/Gba.Core.Tests/Gba.Core.Tests.csproj
+```
+
+The build should succeed. The list must include your new test methods. The filtered run must execute your `PpuTests` cases and report zero failures; the last command runs **all** Core tests to catch regressions. The count depends on the cases you wrote. “No tests available” or “No test matches” is not a pass: check the saved file, public class/method, attribute and filter spelling. If you choose a different class name, change the filter to match it.
+
+After each code or test edit, save and rerun the filtered command. When it passes, run the full test command again. For your first test, deliberately change one expected value, rerun to see a failed assertion, restore the correct value and rerun to see a pass. Do not leave the deliberately wrong expectation in your work. A compiler error must be fixed before you can evaluate assertions. These commands build automatically; do not use `--no-build` while learning because it can execute stale code.
 
 ## Definition of done
 

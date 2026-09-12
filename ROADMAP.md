@@ -2,7 +2,11 @@
 
 Check a box only after you can explain and verify it. Project files already exist; their learning boxes remain unchecked until you understand them. Folder numbers organize reference subjects; this roadmap chooses implementation order. Each phase links to hardware and local C# lessons, which provide authoritative external references.
 
+For every phase, open its linked lesson and follow the local **Run and check** instructions after saving your work. They name the project, test file/class, command and expected result. [Exactly how to run and test](docs/00-getting-started/running-and-testing.md) supplies terminal setup and troubleshooting. A paper-only exercise is labeled explicitly; a no-tests result never counts as passing an implementation milestone.
+
 ## Phase 0 — C# and low-level refresher
+
+New to emulation or the tools? Work through [Before you code](docs/00-getting-started/before-you-code.md) first. Set up the scratchpad, run one tiny console example, then follow the first-session test. The list below is a set of skills to revisit as needed, not a requirement to master every topic before beginning. Each hardware lesson has a syntax warm-up before its technical details.
 
 Hardware / exercise: [Start here: one small experiment](docs/00-getting-started/README.md).
 C#/.NET: [Integer types, binary and hexadecimal](docs/csharp-and-dotnet/integer-types.md), [Bitwise operations: a mini-course](docs/csharp-and-dotnet/bitwise-operations.md), [Arrays, spans and byte order](docs/csharp-and-dotnet/arrays-and-spans.md), [Structs versus classes](docs/csharp-and-dotnet/structs-vs-classes.md), [Enums and named states](docs/csharp-and-dotnet/enums.md), [Switch statements and pattern matching](docs/csharp-and-dotnet/switch-and-pattern-matching.md), [Projects, assemblies and the .NET CLI](docs/csharp-and-dotnet/project-structure.md).
