@@ -1,8 +1,8 @@
-# Learning chapters
+# Optional reference library
 
-New to the stack or emulation? Read [Before you code](00-getting-started/before-you-code.md) first, then [Start here](00-getting-started/README.md); use [ROADMAP](../ROADMAP.md) for implementation order.
+**The active course is [40 small component lessons](../course/README.md).** Double-click `learn.cmd` in the repository root and follow its current README. Each lesson teaches the hardware and required syntax, names the code to write, and supplies automatic or observable checks. These older chapters are optional detail, not prerequisites.
 
-Every numbered chapter and focused subchapter begins with an introduction, two independent C# warm-ups with expected output, and a practice prompt. Run the examples in the separate [SyntaxLab scratchpad](00-getting-started/before-you-code.md#a-separate-place-to-try-the-examples), then return to the hardware rules and your implementation task. You can split any chapter over several sessions.
+The older chapters retain their deeper explanations and independent syntax examples. Use them when a specific question needs more detail; their setup commands and progress checklists are not part of the simplified course workflow.
 
 - [Before you code: tools, setup and how to learn](00-getting-started/before-you-code.md)
 - [Exactly how to run and test: commands and troubleshooting](00-getting-started/running-and-testing.md)

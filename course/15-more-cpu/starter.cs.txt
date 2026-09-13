@@ -1,0 +1,9 @@
+namespace Gba.Core.Cpu;
+
+// Read course/15-more-cpu/README.md. Choose small methods for the steps below.
+public class CpuDispatch
+{
+    // TODO: For the next family, write its fixed-bit mask, operands, changed state, and one hand-computed before/after example beside its handler. Use the linked instruction reference for exact encodings.
+    // TODO: Implement and check that family only. For test operations preserve Rd; for status writes preserve unselected fields.
+    // TODO: Repeat the table, then add collision fixtures proving multiply/swap/status words cannot enter ordinary data-processing handlers.
+}

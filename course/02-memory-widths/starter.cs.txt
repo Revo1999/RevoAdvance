@@ -1,0 +1,8 @@
+namespace Gba.Core.Memory;
+public class RamWords(Ewram ram)
+{
+    public ushort Read16(int offset) => throw new NotImplementedException();
+    public uint Read32(int offset) => throw new NotImplementedException();
+    public void Write16(int offset, ushort value) => throw new NotImplementedException();
+    public void Write32(int offset, uint value) => throw new NotImplementedException();
+}

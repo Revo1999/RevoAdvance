@@ -1,0 +1,10 @@
+using Gba.Core.Interrupts;
+
+[Trait("Lesson", "19")]
+public class Course19Tests
+{
+[Fact] public void Requests_accumulate() { var i=new InterruptController(); i.Request(1); i.Request(8); Assert.Equal((ushort)9,i.Pending); }
+[Fact] public void Acknowledgement_clears_only_written_ones() { var i=new InterruptController(); i.Request(9); i.Acknowledge(1); i.Acknowledge(0); Assert.Equal((ushort)8,i.Pending); }
+[Fact] public void IRQ_requires_all_gates() { var i=new InterruptController(); i.Request(1); i.Enabled=1; Assert.False(i.ShouldTakeIrq(false)); i.MasterEnabled=true; Assert.True(i.ShouldTakeIrq(false)); Assert.False(i.ShouldTakeIrq(true)); i.Enabled=2; Assert.False(i.ShouldTakeIrq(false)); }
+[Fact] public void Masked_requests_remain_pending() { var i=new InterruptController(); i.Request(2); Assert.False(i.ShouldTakeIrq(true)); Assert.Equal((ushort)2,i.Pending); }
+}

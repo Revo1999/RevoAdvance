@@ -1,0 +1,9 @@
+namespace Gba.Core.Ppu;
+
+// Read course/27-composition/README.md. Choose small methods for the steps below.
+public class Compositor
+{
+    // TODO: Choose a visible candidate using enable bits, transparency, priority, and ties.
+    // TODO: Apply window masks before selection/effects; include OBJ-window behavior separately.
+    // TODO: Add alpha, brighten/darken, and mosaic with small pixel fixtures, then connect display flags and mid-frame register writes at your chosen timing precision.
+}

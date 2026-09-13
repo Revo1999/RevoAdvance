@@ -1,0 +1,7 @@
+namespace Gba.Core.Cartridge;
+public class RomImage
+{
+    public RomImage(byte[] source) { throw new NotImplementedException(); }
+    public int Length => throw new NotImplementedException();
+    public byte Read8(int offset) => throw new NotImplementedException();
+}

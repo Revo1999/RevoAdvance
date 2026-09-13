@@ -1,0 +1,9 @@
+namespace Gba.Core.Apu;
+
+// Read course/34-square-audio/README.md. Choose small methods for the steps below.
+public class SquareChannel
+{
+    // TODO: Implement channel 2 duty stepping and frequency timing from its configured period.
+    // TODO: Add trigger, DAC enable, length, and volume envelope in separate steps.
+    // TODO: Connect sound register reads/writes and test batched versus split guest-cycle advancement.
+}

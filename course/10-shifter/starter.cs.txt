@@ -1,0 +1,9 @@
+namespace Gba.Core.Cpu;
+
+// Read course/10-shifter/README.md. Choose small methods for the steps below.
+public class BarrelShifter
+{
+    // TODO: Start with LSL/LSR for amounts 1–31 and return the carry-out bit.
+    // TODO: Add ASR/ROR and explicit 0/32/>32 cases for register shifts. Add immediate zero special cases and RRX.
+    // TODO: Extend ARM execution to rotated immediates and register operand 2; use shifter carry for logical flag-setting operations.
+}

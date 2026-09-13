@@ -1,0 +1,7 @@
+namespace Gba.Core.Cpu;
+public readonly record struct ArithmeticResult(uint Value, uint Flags);
+public static class Arithmetic
+{
+    public static ArithmeticResult Add(uint left, uint right) => throw new NotImplementedException();
+    public static ArithmeticResult Subtract(uint left, uint right) => throw new NotImplementedException();
+}

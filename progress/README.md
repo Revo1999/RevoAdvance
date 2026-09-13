@@ -1,5 +1,7 @@
 # Learning log
 
+This older log is optional. `learn.cmd` remembers course navigation and records automatic versus self-checked lesson completion in `.work/course-progress.json`. The active course starts with EWRAM storage; you do not need to fill out this template before coding.
+
 ## Current milestone
 
 Phase 0 — first low-byte test. Not started.

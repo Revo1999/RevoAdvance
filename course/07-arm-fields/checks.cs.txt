@@ -1,0 +1,9 @@
+using Gba.Core.Cpu;
+
+[Trait("Lesson", "07")]
+public class Course07Tests
+{
+[Fact] public void Extracts_ADD_fields() { const uint w=0xE2813005; Assert.Equal(4,ArmFields.Opcode(w)); Assert.Equal(1,ArmFields.Rn(w)); Assert.Equal(3,ArmFields.Rd(w)); Assert.False(ArmFields.SetsFlags(w)); }
+[Fact] public void Extracts_MOV_and_S_bit() { const uint w=0xE3B02007; Assert.Equal(13,ArmFields.Opcode(w)); Assert.Equal(2,ArmFields.Rd(w)); Assert.True(ArmFields.SetsFlags(w)); }
+[Fact] public void Condition_bits_are_separate() { Assert.Equal(ArmFields.Opcode(0xE2813005),ArmFields.Opcode(0x12813005)); Assert.Equal(3,ArmFields.Rd(0x12813005)); }
+}

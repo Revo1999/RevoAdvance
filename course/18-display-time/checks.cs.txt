@@ -1,0 +1,10 @@
+using Gba.Core.Ppu;
+
+[Trait("Lesson", "18")]
+public class Course18Tests
+{
+[Fact] public void HBlank_status_begins_at_cycle_1006() { var d=new DisplayTiming(); d.Advance(1005); Assert.False(d.IsHBlank); d.Advance(1); Assert.True(d.IsHBlank); }
+[Fact] public void A_line_preserves_remainder_cycles() { var d=new DisplayTiming(); d.Advance(1200); d.Advance(39); Assert.Equal(1,d.Line); Assert.Equal(7,d.LineCycle); Assert.False(d.IsHBlank); }
+[Fact] public void VBlank_flag_has_both_boundaries() { var d=new DisplayTiming(); d.Advance(1232*160); Assert.True(d.IsVBlank); d.Advance(1232*67); Assert.Equal(227,d.Line); Assert.False(d.IsVBlank); }
+[Fact] public void A_frame_wraps_without_losing_cycles() { var d=new DisplayTiming(); d.Advance(1232*228+5); Assert.Equal(0,d.Line); Assert.Equal(5,d.LineCycle); }
+}

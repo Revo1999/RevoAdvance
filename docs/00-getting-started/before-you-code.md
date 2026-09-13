@@ -1,5 +1,7 @@
 # Before you code: a friendly starting point
 
+**You can leave tool setup to the launcher.** Double-click `dev.cmd` in the repository root, or use the [everyday workflow](daily-workflow.md). The explanations and manual setup below are optional background; you do not need to learn project management tools before writing emulator code.
+
 Some C# experience is enough to begin. You do not need to know electronics, assembly, graphics programming or native libraries first. Learn one piece of hardware and one small piece of syntax at a time. The first goal is to understand a number in a test, not to boot a game.
 
 ## What are we actually building?

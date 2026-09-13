@@ -1,0 +1,10 @@
+using Gba.Core.Cpu;
+
+[Trait("Lesson", "09")]
+public class Course09Tests
+{
+[Fact] public void Unsigned_addition_carries() { Assert.Equal(new ArithmeticResult(0,0x60000000),Arithmetic.Add(0xFFFFFFFF,1)); }
+[Fact] public void Signed_addition_overflows() { Assert.Equal(new ArithmeticResult(0x80000000,0x90000000),Arithmetic.Add(0x7FFFFFFF,1)); }
+[Fact] public void Subtraction_can_borrow() { Assert.Equal(new ArithmeticResult(0xFFFFFFFF,0x80000000),Arithmetic.Subtract(0,1)); }
+[Fact] public void Signed_subtraction_overflows() { Assert.Equal(new ArithmeticResult(0x7FFFFFFF,0x30000000),Arithmetic.Subtract(0x80000000,1)); }
+}

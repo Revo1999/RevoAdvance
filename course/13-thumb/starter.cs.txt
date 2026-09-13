@@ -1,0 +1,5 @@
+namespace Gba.Core.Cpu;
+public static class ThumbImmediate
+{
+    public static uint Execute(ushort instruction, CpuRegisters registers, uint cpsr) => throw new NotImplementedException();
+}

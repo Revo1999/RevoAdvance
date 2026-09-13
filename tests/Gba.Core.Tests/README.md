@@ -1,5 +1,7 @@
-# Your tests start here
+# Lesson checks
 
-This is an xUnit v2 test project with no test methods yet. Create your first low-byte exercise yourself using [Start here](../../docs/00-getting-started/README.md) and the [testing refresher](../../docs/csharp-and-dotnet/testing.md).
+`EwramTests.cs` contains six ready-made checks for your first memory component.
 
-The project references only Core. No ROM, BIOS, window or GPU is needed for the first tests. `dotnet test` before you add a test is only a discovery/toolchain check.
+Double-click `learn.cmd` in the repository root to run them whenever you save. They fail until you implement the TODOs in `src/Gba.Core/Memory/Ewram.cs`.
+
+You can focus on the emulator; learning how to write additional tests can come later.

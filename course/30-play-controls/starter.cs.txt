@@ -1,0 +1,9 @@
+namespace Gba.Desktop;
+
+// Read course/30-play-controls/README.md. Choose small methods for the steps below.
+public class SessionControls
+{
+    // TODO: Connect physical keys to the logical keypad and clear held host inputs appropriately on focus loss.
+    // TODO: Add run/pause/resume/reset through one session controller.
+    // TODO: Add Open ROM and game switching with visible errors; implement KEYCNT source matching and feed its guest IRQ request into the existing controller.
+}

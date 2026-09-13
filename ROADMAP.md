@@ -1,5 +1,7 @@
 # Roadmap: one understandable problem at a time
 
+**This is an optional long-term reference, not your starting checklist.** The active path is the [40-lesson course](course/README.md): one GBA behavior, the C# needed for it, and one implementation. `learn.cmd` remembers your place and handles checks. Setup, project architecture, and progress logs are not prerequisites. The older phases below remain available for later planning.
+
 Check a box only after you can explain and verify it. Project files already exist; their learning boxes remain unchecked until you understand them. Folder numbers organize reference subjects; this roadmap chooses implementation order. Each phase links to hardware and local C# lessons, which provide authoritative external references.
 
 For every phase, open its linked lesson and follow the local **Run and check** instructions after saving your work. They name the project, test file/class, command and expected result. [Exactly how to run and test](docs/00-getting-started/running-and-testing.md) supplies terminal setup and troubleshooting. A paper-only exercise is labeled explicitly; a no-tests result never counts as passing an implementation milestone.

@@ -1,0 +1,6 @@
+namespace Gba.Core.Input;
+public class Keypad
+{
+    public void SetPressed(ushort mask) => throw new NotImplementedException();
+    public ushort ReadInput() => throw new NotImplementedException();
+}

@@ -1,0 +1,5 @@
+namespace Gba.Core.Cpu;
+public static class ArmImmediate
+{
+    public static void Execute(uint instruction, CpuRegisters registers, uint cpsr) => throw new NotImplementedException();
+}

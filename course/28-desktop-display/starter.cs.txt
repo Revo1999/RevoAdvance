@@ -1,0 +1,9 @@
+namespace Gba.Desktop;
+
+// Read course/28-desktop-display/README.md. Choose small methods for the steps below.
+public class EmulatorWindow
+{
+    // TODO: Define the host handoff: 240×160 pixels, known channel format, and who owns the buffer during presentation.
+    // TODO: Connect a synthetic asymmetric frame to the host backend. Have setup/plumbing supplied if needed; do not put Vulkan types into Core.
+    // TODO: Connect completed PPU frames, preserving aspect ratio and nearest/integer scaling. Handle resize and orderly shutdown.
+}

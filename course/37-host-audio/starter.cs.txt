@@ -1,0 +1,9 @@
+namespace Gba.Desktop;
+
+// Read course/37-host-audio/README.md. Choose small methods for the steps below.
+public class AudioOutput
+{
+    // TODO: Implement guest routing, levels, saturation/bias, and a deterministic resampling boundary.
+    // TODO: Have the host audio device/queue plumbing supplied or connect it to AudioOutput; verify a known synthetic tone first.
+    // TODO: Feed guest mixed samples, then handle pause, resume, underrun, and close without changing guest timing.
+}

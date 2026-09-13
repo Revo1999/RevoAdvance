@@ -1,0 +1,9 @@
+namespace Gba.Core.Timers;
+public class GbaTimer
+{
+    public ushort Reload { get; set; }
+    public int Divisor { get; set; } = 1;
+    public ushort Counter => throw new NotImplementedException();
+    public void SetEnabled(bool enabled) => throw new NotImplementedException();
+    public int Advance(int cycles) => throw new NotImplementedException();
+}

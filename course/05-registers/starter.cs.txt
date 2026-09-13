@@ -1,0 +1,7 @@
+namespace Gba.Core.Cpu;
+public class CpuRegisters
+{
+    // TODO: add per-object storage for sixteen 32-bit values.
+    public uint Read(int register) => throw new NotImplementedException();
+    public void Write(int register, uint value) => throw new NotImplementedException();
+}

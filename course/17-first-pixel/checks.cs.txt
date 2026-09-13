@@ -1,0 +1,10 @@
+using Gba.Core.Ppu;
+
+[Trait("Lesson", "17")]
+public class Course17Tests
+{
+[Fact] public void Red_channel_is_placed_correctly() { Assert.Equal(0xFFFF0000u,GbaColor.Convert(0x001F)); }
+[Fact] public void Green_channel_is_placed_correctly() { Assert.Equal(0xFF00FF00u,GbaColor.Convert(0x03E0)); }
+[Fact] public void Blue_channel_is_placed_correctly() { Assert.Equal(0xFF0000FFu,GbaColor.Convert(0x7C00)); }
+[Fact] public void High_bit_is_not_alpha_and_midtones_expand() { Assert.Equal(0xFFFFFFFFu,GbaColor.Convert(0xFFFF)); Assert.Equal(0xFF840000u,GbaColor.Convert(0x0010)); }
+}

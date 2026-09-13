@@ -1,0 +1,9 @@
+namespace Gba.Core.Ppu;
+public class DisplayTiming
+{
+    public int Line => throw new NotImplementedException();
+    public int LineCycle => throw new NotImplementedException();
+    public bool IsHBlank => throw new NotImplementedException();
+    public bool IsVBlank => throw new NotImplementedException();
+    public void Advance(int cycles) => throw new NotImplementedException();
+}

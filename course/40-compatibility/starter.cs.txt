@@ -1,0 +1,9 @@
+namespace Gba.Core.Common;
+
+// Read course/40-compatibility/README.md. Choose small methods for the steps below.
+public class CompatibilityNotes
+{
+    // TODO: Choose one diagnostic failure or visible game defect, capture its earliest divergence, and fix that behavior only. Add a regression case.
+    // TODO: Repeat until a defined section of one selected game has working graphics, input, audio, and persistence.
+    // TODO: Exercise normal open/pause/reset/switch/save/state/close workflows, then profile any measured bottleneck. Record actual unsupported behavior instead of claiming universal compatibility.
+}

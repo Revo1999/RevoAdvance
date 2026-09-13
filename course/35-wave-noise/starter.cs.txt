@@ -1,0 +1,9 @@
+namespace Gba.Core.Apu;
+
+// Read course/35-wave-noise/README.md. Choose small methods for the steps below.
+public class LegacyAudio
+{
+    // TODO: Add channel 1 sweep to the existing square-channel behavior, including overflow/disable cases.
+    // TODO: Implement wave RAM nibble playback and banking/volume controls.
+    // TODO: Implement the noise LFSR widths and clock selection, then route all four sources through master and left/right controls.
+}

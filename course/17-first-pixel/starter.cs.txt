@@ -1,0 +1,5 @@
+namespace Gba.Core.Ppu;
+public static class GbaColor
+{
+    public static uint Convert(ushort color) => throw new NotImplementedException();
+}

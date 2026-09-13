@@ -1,0 +1,9 @@
+namespace Gba.Core.Ppu;
+
+// Read course/26-affine-bitmaps/README.md. Choose small methods for the steps below.
+public class AffineBackground
+{
+    // TODO: Render a Mode 3 frame from synthetic VRAM with identity BG2 sampling and GbaColor.
+    // TODO: Implement Mode 4 palette lookup/page selection, then Mode 5 dimensions/page selection.
+    // TODO: Add affine BG sampling and affine OBJ matrices; test identity before scale/rotation, then add wrapping/bounds rules and per-line reference updates.
+}

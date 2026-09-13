@@ -1,0 +1,9 @@
+namespace Gba.Core.Cpu;
+
+// Read course/16-exceptions/README.md. Choose small methods for the steps below.
+public class ExceptionUnit
+{
+    // TODO: Extend CpuRegisters with mode selection and banked storage without changing the existing raw-register API for ordinary access.
+    // TODO: Implement SWI entry first, then IRQ and undefined entry with a deliberate internal instruction-address convention.
+    // TODO: Implement exception-return status restoration and bank selection. Add Thumb SWI and test both ARM/Thumb return state.
+}

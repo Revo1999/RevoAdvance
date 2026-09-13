@@ -1,0 +1,10 @@
+using Gba.Core.Timers;
+
+[Trait("Lesson", "20")]
+public class Course20Tests
+{
+[Fact] public void Enabling_loads_reload() { var t=new GbaTimer{Reload=123}; t.SetEnabled(true); Assert.Equal((ushort)123,t.Counter); }
+[Fact] public void Prescaler_remainder_is_retained() { var t=new GbaTimer{Reload=4,Divisor=64}; t.SetEnabled(true); t.Advance(63); Assert.Equal((ushort)4,t.Counter); t.Advance(1); Assert.Equal((ushort)5,t.Counter); }
+[Fact] public void Multiple_overflows_reload_each_time() { var t=new GbaTimer{Reload=0xFFFE}; t.SetEnabled(true); Assert.Equal(2,t.Advance(5)); Assert.Equal((ushort)0xFFFF,t.Counter); }
+[Fact] public void Reload_write_waits_and_disabled_timer_stops() { var t=new GbaTimer{Reload=0xFFFE}; t.SetEnabled(true); t.Reload=7; t.Advance(1); Assert.Equal((ushort)0xFFFF,t.Counter); t.Advance(1); Assert.Equal((ushort)7,t.Counter); t.SetEnabled(false); Assert.Equal(0,t.Advance(20)); Assert.Equal((ushort)7,t.Counter); }
+}

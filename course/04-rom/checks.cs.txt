@@ -1,0 +1,9 @@
+using Gba.Core.Cartridge;
+
+[Trait("Lesson", "04")]
+public class Course04Tests
+{
+[Fact] public void Keeps_the_image_length_and_bytes() { var r=new RomImage(new byte[]{12,34,56}); Assert.Equal(3,r.Length); Assert.Equal((byte)12,r.Read8(0)); Assert.Equal((byte)56,r.Read8(2)); }
+[Fact] public void Input_changes_do_not_modify_ROM() { var data=new byte[]{12}; var r=new RomImage(data); data[0]=99; Assert.Equal((byte)12,r.Read8(0)); }
+[Fact] public void Invalid_file_offsets_are_reported() { var r=new RomImage(new byte[]{12}); Assert.Throws<ArgumentOutOfRangeException>(()=>r.Read8(-1)); Assert.Throws<ArgumentOutOfRangeException>(()=>r.Read8(1)); }
+}

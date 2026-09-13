@@ -1,0 +1,890 @@
+[
+  {
+    "id": "01",
+    "title": "Memory that remembers bytes",
+    "folder": "course/01-ewram",
+    "file": "src/Gba.Core/Memory/Ewram.cs",
+    "mode": "automatic",
+    "count": 6,
+    "checks": [
+      "A written value can be read.",
+      "A second write replaces the first.",
+      "Adjacent offsets stay independent.",
+      "The first and last offsets work, including values 255 and 0.",
+      "Two Ewram objects do not share storage."
+    ],
+    "templates": []
+  },
+  {
+    "id": "02",
+    "title": "Reading two or four bytes together",
+    "folder": "course/02-memory-widths",
+    "file": "src/Gba.Core/Memory/RamWords.cs",
+    "mode": "automatic",
+    "count": 4,
+    "checks": [
+      "Bytes 34 12 read as 0x1234.",
+      "Writing 0xBEEF stores EF then BE.",
+      "Bytes 78 56 34 12 read as 0x12345678.",
+      "Writing 0xFEDCBA98 stores 98 BA DC FE."
+    ],
+    "templates": [
+      {
+        "source": "course/02-memory-widths/starter.cs.txt",
+        "target": "src/Gba.Core/Memory/RamWords.cs"
+      },
+      {
+        "source": "course/02-memory-widths/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course02Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "03",
+    "title": "Turning a GBA address into a memory access",
+    "folder": "course/03-bus",
+    "file": "src/Gba.Core/Memory/MemoryBus.cs",
+    "mode": "automatic",
+    "count": 4,
+    "checks": [
+      "A write to 0x02000007 reaches offset 7 in the original RAM.",
+      "The mirror at 0x02040007 sees the same byte.",
+      "0x02FFFFFF maps to the last physical byte.",
+      "Addresses outside the EWRAM region report an unsupported access."
+    ],
+    "templates": [
+      {
+        "source": "course/03-bus/starter.cs.txt",
+        "target": "src/Gba.Core/Memory/MemoryBus.cs"
+      },
+      {
+        "source": "course/03-bus/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course03Tests.cs"
+      }
+    ],
+    "retireChecks": [
+      {
+        "fromLesson": 23,
+        "name": "Course03Tests.Unsupported_regions_are_reported"
+      }
+    ]
+  },
+  {
+    "id": "04",
+    "title": "Keeping cartridge program bytes",
+    "folder": "course/04-rom",
+    "file": "src/Gba.Core/Cartridge/RomImage.cs",
+    "mode": "automatic",
+    "count": 3,
+    "checks": [
+      "The length matches the supplied image.",
+      "The first and final bytes can be read.",
+      "Changing the input array after construction does not change ROM data.",
+      "Negative and past-the-end offsets throw ArgumentOutOfRangeException."
+    ],
+    "templates": [
+      {
+        "source": "course/04-rom/starter.cs.txt",
+        "target": "src/Gba.Core/Cartridge/RomImage.cs"
+      },
+      {
+        "source": "course/04-rom/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course04Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "05",
+    "title": "The CPU working registers",
+    "folder": "course/05-registers",
+    "file": "src/Gba.Core/Cpu/CpuRegisters.cs",
+    "mode": "automatic",
+    "count": 4,
+    "checks": [
+      "R0 can hold a full 32-bit value.",
+      "R15 is an available storage slot.",
+      "Updating R1 preserves R0.",
+      "Separate CPU objects retain separate values."
+    ],
+    "templates": [
+      {
+        "source": "course/05-registers/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/CpuRegisters.cs"
+      },
+      {
+        "source": "course/05-registers/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course05Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "06",
+    "title": "Deciding whether an ARM instruction runs",
+    "folder": "course/06-conditions",
+    "file": "src/Gba.Core/Cpu/Conditions.cs",
+    "mode": "automatic",
+    "count": 3,
+    "checks": [
+      "Every condition is checked against all sixteen flag combinations.",
+      "AL always passes and NV never passes.",
+      "Unrelated CPSR mode/control bits do not affect condition results."
+    ],
+    "templates": [
+      {
+        "source": "course/06-conditions/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/Conditions.cs"
+      },
+      {
+        "source": "course/06-conditions/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course06Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "07",
+    "title": "Reading fields from an ARM instruction",
+    "folder": "course/07-arm-fields",
+    "file": "src/Gba.Core/Cpu/ArmFields.cs",
+    "mode": "automatic",
+    "count": 3,
+    "checks": [
+      "0xE2813005 identifies ADD (opcode 4), Rn=1, Rd=3, S=false.",
+      "0xE3B02007 identifies MOV (opcode 13), Rd=2, S=true.",
+      "Different condition bits do not contaminate operand fields."
+    ],
+    "templates": [
+      {
+        "source": "course/07-arm-fields/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/ArmFields.cs"
+      },
+      {
+        "source": "course/07-arm-fields/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course07Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "08",
+    "title": "Executing MOV, ADD, and SUB",
+    "folder": "course/08-first-arm",
+    "file": "src/Gba.Core/Cpu/ArmImmediate.cs",
+    "mode": "automatic",
+    "count": 4,
+    "checks": [
+      "MOV r0,#7 stores 7.",
+      "MOV, ADD, SUB sequence produces r0=7, r1=12, r2=10.",
+      "A failing EQ condition makes no register change.",
+      "Unsupported opcode 0 is reported, not silently treated as MOV."
+    ],
+    "templates": [
+      {
+        "source": "course/08-first-arm/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/ArmImmediate.cs"
+      },
+      {
+        "source": "course/08-first-arm/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course08Tests.cs"
+      }
+    ],
+    "retireChecks": [
+      {
+        "fromLesson": 15,
+        "name": "Course08Tests.Unsupported_opcode_is_reported"
+      }
+    ]
+  },
+  {
+    "id": "09",
+    "title": "Carry and signed overflow",
+    "folder": "course/09-arithmetic-flags",
+    "file": "src/Gba.Core/Cpu/Arithmetic.cs",
+    "mode": "automatic",
+    "count": 4,
+    "checks": [
+      "FFFFFFFF + 1 → value 0, flags Z+C.",
+      "7FFFFFFF + 1 → 80000000, flags N+V.",
+      "0 − 1 → FFFFFFFF, N set and C clear.",
+      "80000000 − 1 → 7FFFFFFF, C+V set."
+    ],
+    "templates": [
+      {
+        "source": "course/09-arithmetic-flags/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/Arithmetic.cs"
+      },
+      {
+        "source": "course/09-arithmetic-flags/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course09Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "title": "Shifts, rotations, and ARM operands",
+    "folder": "course/10-shifter",
+    "file": "src/Gba.Core/Cpu/BarrelShifter.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "LSL(0x80000001,1) gives 2 and carry=true.",
+      "LSR #32 of 0x80000000 gives 0 and carry=true; a register amount of 0 preserves old carry.",
+      "ASR(0x80000000,32) gives FFFFFFFF and carry=true.",
+      "RRX of 2 with carry=true gives 80000001 and carry=false.",
+      "Rotating 0x80 right by 8 gives 80000000; rotating by zero preserves carry."
+    ],
+    "templates": [
+      {
+        "source": "course/10-shifter/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/BarrelShifter.cs"
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "title": "Program flow and the visible PC",
+    "folder": "course/11-branches",
+    "file": "src/Gba.Core/Cpu/BranchUnit.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "At ARM address 08000000, EA000000 branches to 08000008.",
+      "At the same address, EAFFFFFE branches back to 08000000.",
+      "EB000000 also writes LR=08000004.",
+      "BX to 08000005 selects Thumb and fetches at 08000004; an even target selects ARM and is word-aligned.",
+      "A failed conditional branch continues at instruction address +4."
+    ],
+    "templates": [
+      {
+        "source": "course/11-branches/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/BranchUnit.cs"
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "title": "Moving values between registers and memory",
+    "folder": "course/12-loads-stores",
+    "file": "src/Gba.Core/Cpu/SingleTransfer.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "With r0=02000000 and r1=12345678, E5801000 stores r1; E5902000 reads it into r2.",
+      "A byte store changes exactly one byte; a byte load returns 0–255.",
+      "A failing condition neither writes memory nor updates Rn.",
+      "With aligned word 12345678 at A, a word load from A+1 returns 78123456.",
+      "Record separate cases for positive/negative offsets and pre/post indexing before expanding instruction families."
+    ],
+    "templates": [
+      {
+        "source": "course/12-loads-stores/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/SingleTransfer.cs"
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "title": "The first Thumb instructions",
+    "folder": "course/13-thumb",
+    "file": "src/Gba.Core/Cpu/ThumbImmediate.cs",
+    "mode": "automatic",
+    "count": 3,
+    "checks": [
+      "MOV r5,#9 writes R5 and preserves C/V and control bits.",
+      "MOV 7, ADD 5, SUB 2 leaves R0=10 and C set after subtraction.",
+      "CMP equal values sets Z+C and leaves its source unchanged."
+    ],
+    "templates": [
+      {
+        "source": "course/13-thumb/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/ThumbImmediate.cs"
+      },
+      {
+        "source": "course/13-thumb/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course13Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "title": "Stacks and transferring several registers",
+    "folder": "course/14-stack-transfers",
+    "file": "src/Gba.Core/Cpu/BlockTransfer.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "STMIA r0!,{r1,r2} writes r1 at old R0 and r2 at old R0+4, then advances R0 by 8.",
+      "PUSH {r0,r1} with SP=02000100 writes r0 at 020000F8 and r1 at 020000FC; SP becomes 020000F8.",
+      "POP restores both values and the old SP.",
+      "No transfer happens when an ARM condition fails.",
+      "Give base-in-list, empty-list, and PC cases their own fixtures before calling those forms supported."
+    ],
+    "templates": [
+      {
+        "source": "course/14-stack-transfers/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/BlockTransfer.cs"
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "title": "Completing CPU families one at a time",
+    "folder": "course/15-more-cpu",
+    "file": "src/Gba.Core/Cpu/CpuDispatch.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "AND of F0 and 3C gives 30; TST changes flags without replacing a register.",
+      "ADC(FFFFFFFF,0,C=1) gives 0 with carry; SBC(5,2,C=0) gives 2.",
+      "Unsigned long multiplication FFFFFFFF × 2 gives high=1, low=FFFFFFFE.",
+      "A swap writes the old register value and returns the old memory value.",
+      "Thumb BL keeps the first-half intermediate state until the second half and returns a Thumb-state link address.",
+      "Each implemented family has a passing example and boundary case; unsupported families remain named diagnostics, never silent no-ops."
+    ],
+    "templates": [
+      {
+        "source": "course/15-more-cpu/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/CpuDispatch.cs"
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "title": "Banked registers and entering an exception",
+    "folder": "course/16-exceptions",
+    "file": "src/Gba.Core/Cpu/ExceptionUnit.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "Switch User → IRQ → User: shared R0 survives, each mode retains its own SP/LR.",
+      "FIQ has a different R8; User/System share theirs.",
+      "ARM SWI at address A saves return A+4; Thumb SWI saves A+2, and both enter ARM Supervisor at 08.",
+      "Saved status restores Thumb state and the prior mode on return.",
+      "For IRQ, verify the return target using the intended SUBS PC,LR,#4 sequence."
+    ],
+    "templates": [
+      {
+        "source": "course/16-exceptions/starter.cs.txt",
+        "target": "src/Gba.Core/Cpu/ExceptionUnit.cs"
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "title": "Turning a GBA color into a pixel",
+    "folder": "course/17-first-pixel",
+    "file": "src/Gba.Core/Ppu/GbaColor.cs",
+    "mode": "automatic",
+    "count": 4,
+    "checks": [
+      "001F becomes FFFF0000 (red).",
+      "03E0 becomes FF00FF00 (green).",
+      "7C00 becomes FF0000FF (blue).",
+      "FFFF becomes FFFFFFFF; channel value 16 expands to 132."
+    ],
+    "templates": [
+      {
+        "source": "course/17-first-pixel/starter.cs.txt",
+        "target": "src/Gba.Core/Ppu/GbaColor.cs"
+      },
+      {
+        "source": "course/17-first-pixel/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course17Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "title": "Counting scanlines",
+    "folder": "course/18-display-time",
+    "file": "src/Gba.Core/Ppu/DisplayTiming.cs",
+    "mode": "automatic",
+    "count": 4,
+    "checks": [
+      "At line-cycle 1005 the HBlank status flag is clear; one more cycle sets it.",
+      "1232 cycles advances one line and resets line-cycle to zero.",
+      "Line 160 enters VBlank; line 227 clears the status flag.",
+      "A whole frame plus 5 cycles ends at line 0, cycle 5."
+    ],
+    "templates": [
+      {
+        "source": "course/18-display-time/starter.cs.txt",
+        "target": "src/Gba.Core/Ppu/DisplayTiming.cs"
+      },
+      {
+        "source": "course/18-display-time/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course18Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "title": "Remembering interrupt requests",
+    "folder": "course/19-interrupts",
+    "file": "src/Gba.Core/Interrupts/InterruptController.cs",
+    "mode": "automatic",
+    "count": 4,
+    "checks": [
+      "Requesting bits 0 and 3 retains both.",
+      "Acknowledging bit 0 leaves bit 3 pending.",
+      "All gates must allow a request before IRQ is accepted.",
+      "Masking does not erase pending requests."
+    ],
+    "templates": [
+      {
+        "source": "course/19-interrupts/starter.cs.txt",
+        "target": "src/Gba.Core/Interrupts/InterruptController.cs"
+      },
+      {
+        "source": "course/19-interrupts/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course19Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "title": "One timer that reloads on overflow",
+    "folder": "course/20-timers",
+    "file": "src/Gba.Core/Timers/GbaTimer.cs",
+    "mode": "automatic",
+    "count": 4,
+    "checks": [
+      "Enabling loads Reload.",
+      "With divisor 64, calls of 63 then 1 advance exactly one tick.",
+      "Reload FFFE and five ticks produce two overflows and counter FFFF.",
+      "A reload write while enabled waits until overflow; disabling stops advancement."
+    ],
+    "templates": [
+      {
+        "source": "course/20-timers/starter.cs.txt",
+        "target": "src/Gba.Core/Timers/GbaTimer.cs"
+      },
+      {
+        "source": "course/20-timers/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course20Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "21",
+    "title": "Copying through the bus with DMA",
+    "folder": "course/21-dma",
+    "file": "src/Gba.Core/Dma/DmaChannel.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "Copy three halfwords 1111,2222,3333: destination bytes and final addresses match six transferred bytes.",
+      "Word transfers advance incrementing addresses by four.",
+      "A fixed destination receives each successive source value at the same address.",
+      "HBlank-triggered DMA waits for its trigger; simultaneous eligible channels run in priority order.",
+      "A completion IRQ occurs once per completed transfer sequence, not once per unit."
+    ],
+    "templates": [
+      {
+        "source": "course/21-dma/starter.cs.txt",
+        "target": "src/Gba.Core/Dma/DmaChannel.cs"
+      }
+    ]
+  },
+  {
+    "id": "22",
+    "title": "Pressed buttons become zero bits",
+    "folder": "course/22-keypad",
+    "file": "src/Gba.Core/Input/Keypad.cs",
+    "mode": "automatic",
+    "count": 4,
+    "checks": [
+      "No buttons reads 03FF.",
+      "A pressed reads 03FE.",
+      "A+Start reads 03F6; releasing A leaves 03F7.",
+      "Bits above bit 9 in the host mask are ignored."
+    ],
+    "templates": [
+      {
+        "source": "course/22-keypad/starter.cs.txt",
+        "target": "src/Gba.Core/Input/Keypad.cs"
+      },
+      {
+        "source": "course/22-keypad/checks.cs.txt",
+        "target": "tests/Gba.Core.Tests/Course22Tests.cs"
+      }
+    ]
+  },
+  {
+    "id": "23",
+    "title": "Connecting components to one guest clock",
+    "folder": "course/23-machine-time",
+    "file": "src/Gba.Core/Common/GbaMachine.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "Running the same fixture as one cycle batch or many small batches reaches the same counter/line state.",
+      "A timer overflow feeds its cascade successor and IRQ once per event.",
+      "HALT allows a display/timer event to become pending; pause changes no guest state.",
+      "A memory-mapped IF write acknowledges rather than replacing the latch.",
+      "Record event order for coincident timer/display/DMA activity; rerunning produces the same trace."
+    ],
+    "templates": [
+      {
+        "source": "course/23-machine-time/starter.cs.txt",
+        "target": "src/Gba.Core/Common/GbaMachine.cs"
+      }
+    ]
+  },
+  {
+    "id": "24",
+    "title": "Drawing a tiled background",
+    "folder": "course/24-tiles",
+    "file": "src/Gba.Core/Ppu/TextBackground.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "A tile with first byte 21 (hex) draws palette index 1 then 2.",
+      "A distinct corner marker moves to the opposite corner under each flip.",
+      "Palette index zero lets the backdrop show through.",
+      "Scrolling across an 8-pixel boundary selects the adjacent tile without a gap.",
+      "For 512-pixel maps, verify screen-block selection rather than assuming one flat 64×64 map in memory."
+    ],
+    "templates": [
+      {
+        "source": "course/24-tiles/starter.cs.txt",
+        "target": "src/Gba.Core/Ppu/TextBackground.cs"
+      }
+    ]
+  },
+  {
+    "id": "25",
+    "title": "Objects on top of backgrounds",
+    "folder": "course/25-sprites",
+    "file": "src/Gba.Core/Ppu/Objects.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "An 8×8 object at (10,20) covers the intended eight pixels each way.",
+      "Transparent holes reveal a background pixel.",
+      "X=511 places the left edge at −1 after wrapping, showing only the visible portion.",
+      "Two regular objects with equal priority choose the lower OAM index at an overlap.",
+      "Switching 1D/2D mapping changes row tile addresses as expected for a multi-tile object."
+    ],
+    "templates": [
+      {
+        "source": "course/25-sprites/starter.cs.txt",
+        "target": "src/Gba.Core/Ppu/Objects.cs"
+      }
+    ]
+  },
+  {
+    "id": "26",
+    "title": "Affine sampling and the other bitmap modes",
+    "folder": "course/26-affine-bitmaps",
+    "file": "src/Gba.Core/Ppu/AffineBackground.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "Mode 3 corners have distinct expected colors and rows are 240 pixels wide.",
+      "Toggling page select in Mode 4 changes the image without moving the palette.",
+      "Mode 5 leaves the area outside its sampled image to composition rather than stretching it automatically.",
+      "Identity affine sampling matches the non-transformed fixture.",
+      "A translation moves a unique marker by the predicted amount; negative coordinates are handled deliberately."
+    ],
+    "templates": [
+      {
+        "source": "course/26-affine-bitmaps/starter.cs.txt",
+        "target": "src/Gba.Core/Ppu/AffineBackground.cs"
+      }
+    ]
+  },
+  {
+    "id": "27",
+    "title": "Choosing the final visible pixel",
+    "folder": "course/27-composition",
+    "file": "src/Gba.Core/Ppu/Compositor.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "A transparent top candidate reveals the next visible one; opaque black hides it.",
+      "OBJ versus BG and BG versus BG ties follow their documented order.",
+      "A window boundary changes exactly the intended pixel range.",
+      "Alpha at coefficients 8 and 8 produces the expected half-strength contribution from each selected target, clamped at 31.",
+      "Brighten at full coefficient produces white; darken produces black; disabled effects preserve the selected color.",
+      "State the remaining scanline versus per-pixel timing limits instead of treating a static image as full PPU accuracy."
+    ],
+    "templates": [
+      {
+        "source": "course/27-composition/starter.cs.txt",
+        "target": "src/Gba.Core/Ppu/Compositor.cs"
+      }
+    ]
+  },
+  {
+    "id": "28",
+    "title": "Showing your framebuffer in a window",
+    "folder": "course/28-desktop-display",
+    "file": "src/Gba.Desktop/Window/EmulatorWindow.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "Four distinct corners appear in the correct positions and channels.",
+      "Resize preserves aspect ratio and introduces borders where necessary.",
+      "Repeated open/resize/close does not leak resources or report validation errors.",
+      "The displayed frame is complete, not half from one guest frame and half from another."
+    ],
+    "templates": [
+      {
+        "source": "course/28-desktop-display/starter.cs.txt",
+        "target": "src/Gba.Desktop/Window/EmulatorWindow.cs"
+      }
+    ]
+  },
+  {
+    "id": "29",
+    "title": "Loading a program and choosing a boot state",
+    "folder": "course/29-boot",
+    "file": "src/Gba.Core/Cartridge/BootSession.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "A tiny MOV/ADD/STR fixture writes the hand-computed signature into EWRAM.",
+      "The same image runs identically twice from the same reset state.",
+      "A missing/unreadable ROM leaves the existing session intact and shows a useful message.",
+      "Unsupported instructions/BIOS behavior report an address and operation rather than silently advancing.",
+      "A selected game boot screen is an observed milestone; record its remaining feature requirements."
+    ],
+    "templates": [
+      {
+        "source": "course/29-boot/starter.cs.txt",
+        "target": "src/Gba.Core/Cartridge/BootSession.cs"
+      }
+    ]
+  },
+  {
+    "id": "30",
+    "title": "Run, pause, reset, and buttons",
+    "folder": "course/30-play-controls",
+    "file": "src/Gba.Desktop/Input/SessionControls.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "Press/release A changes KEYINPUT and a supported game/menu responds.",
+      "Pause freezes the cycle count; the window can still resize and resume.",
+      "Reset reproduces boot state but does not erase a saved game.",
+      "Switching games does not retain the previous CPU registers or held keys.",
+      "KEYCNT OR matches one selected pressed key; AND requires all selected keys, with empty-selection behavior tested from the hardware reference."
+    ],
+    "templates": [
+      {
+        "source": "course/30-play-controls/starter.cs.txt",
+        "target": "src/Gba.Desktop/Input/SessionControls.cs"
+      }
+    ]
+  },
+  {
+    "id": "31",
+    "title": "Keeping a game save after the app closes",
+    "folder": "course/31-sram",
+    "file": "src/Gba.Core/Cartridge/SramSave.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "Write a marker through the guest bus, persist, fully close, reopen, and read the same marker.",
+      "Two different cartridge identities have independent saves.",
+      "A failed disk write preserves the previous good save and keeps new data dirty.",
+      "A supported game’s Save → close → reopen → Continue works through the normal app path.",
+      "The ROM file’s bytes remain unchanged."
+    ],
+    "templates": [
+      {
+        "source": "course/31-sram/starter.cs.txt",
+        "target": "src/Gba.Core/Cartridge/SramSave.cs"
+      }
+    ]
+  },
+  {
+    "id": "32",
+    "title": "Flash saves are a command-driven device",
+    "folder": "course/32-flash",
+    "file": "src/Gba.Core/Cartridge/FlashSave.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "Ordinary writes without a valid command sequence do not behave like SRAM writes.",
+      "ID mode reports the configured IDs; reset returns to array reads.",
+      "Programming affects the selected location according to Flash bit-programming rules; erase returns its region to FF.",
+      "An invalid/interrupted command sequence recovers predictably without corrupting unrelated bytes.",
+      "Switching banks reveals independent data, and close/reopen preserves both banks."
+    ],
+    "templates": [
+      {
+        "source": "course/32-flash/starter.cs.txt",
+        "target": "src/Gba.Core/Cartridge/FlashSave.cs"
+      }
+    ]
+  },
+  {
+    "id": "33",
+    "title": "A save protocol sent one bit at a time",
+    "folder": "course/33-eeprom",
+    "file": "src/Gba.Core/Cartridge/EepromSave.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "A complete serial write followed by read returns the same asymmetric 64-bit pattern.",
+      "Two neighboring block addresses remain independent.",
+      "Read output begins with the documented dummy bits before data.",
+      "A partial command does not accidentally become a completed write.",
+      "The same EEPROM data survives a full close/reopen, while save states also preserve partial protocol state."
+    ],
+    "templates": [
+      {
+        "source": "course/33-eeprom/starter.cs.txt",
+        "target": "src/Gba.Core/Cartridge/EepromSave.cs"
+      }
+    ]
+  },
+  {
+    "id": "34",
+    "title": "A sound channel as changing numeric output",
+    "folder": "course/34-square-audio",
+    "file": "src/Gba.Core/Apu/SquareChannel.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "A fixed frequency repeats the selected duty pattern after the expected guest-cycle period.",
+      "Duty changes alter high/low proportions rather than merely changing volume.",
+      "Length expiry silences the channel when length control is enabled.",
+      "Envelope ticks change volume at the configured rate and stop at its limit.",
+      "One large Advance and many smaller Advances produce the same phase, envelope, and output."
+    ],
+    "templates": [
+      {
+        "source": "course/34-square-audio/starter.cs.txt",
+        "target": "src/Gba.Core/Apu/SquareChannel.cs"
+      }
+    ]
+  },
+  {
+    "id": "35",
+    "title": "The other legacy sound sources",
+    "folder": "course/35-wave-noise",
+    "file": "src/Gba.Core/Apu/LegacyAudio.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "A known wave pattern plays nibbles in the documented order and repeats at the configured period.",
+      "Sweep changes frequency on its own clock and handles overflow disable.",
+      "Noise from a fixed initial state produces the same bit sequence on every run.",
+      "Changing noise width changes the sequence without using a random generator.",
+      "Muting one route affects only that channel/side, not oscillator phase in unrelated channels."
+    ],
+    "templates": [
+      {
+        "source": "course/35-wave-noise/starter.cs.txt",
+        "target": "src/Gba.Core/Apu/LegacyAudio.cs"
+      }
+    ]
+  },
+  {
+    "id": "36",
+    "title": "Timer-driven audio FIFOs and DMA refill",
+    "folder": "course/36-direct-sound",
+    "file": "src/Gba.Core/Apu/DirectSound.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "Writing 807F00FF yields signed samples −1,0,127,−128 in that order.",
+      "No selected timer overflow means no sample is consumed.",
+      "Crossing the refill threshold requests sound DMA; the transfer refills the queue using the required fixed destination.",
+      "Reset clears queue state as specified without resetting unrelated audio channels.",
+      "A fixed guest timer/input stream gives identical output regardless of desktop callback chunk size."
+    ],
+    "templates": [
+      {
+        "source": "course/36-direct-sound/starter.cs.txt",
+        "target": "src/Gba.Core/Apu/DirectSound.cs"
+      }
+    ]
+  },
+  {
+    "id": "37",
+    "title": "Mixing and playing the sound",
+    "folder": "course/37-host-audio",
+    "file": "src/Gba.Desktop/Audio/AudioOutput.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "A known synthetic tone has stable pitch and the intended left/right routing.",
+      "A muted route produces silence on that side.",
+      "Long playback does not steadily grow the queue or accumulate drift.",
+      "Pause/resume does not play seconds of stale buffered audio.",
+      "Repeated close/reopen releases the device and a supported game’s audio plays with bounded latency."
+    ],
+    "templates": [
+      {
+        "source": "course/37-host-audio/starter.cs.txt",
+        "target": "src/Gba.Desktop/Audio/AudioOutput.cs"
+      }
+    ]
+  },
+  {
+    "id": "38",
+    "title": "Restoring an exact emulated moment",
+    "folder": "course/38-save-states",
+    "file": "src/Gba.Core/Common/SaveState.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "Run N steps, snapshot, run M, restore, run the same M: registers, memory, frame, and audio sequence agree.",
+      "Taking a snapshot then changing RAM does not change the snapshot.",
+      "Restoring midway through a timer divisor, DMA transfer, or EEPROM command resumes the same behavior.",
+      "A wrong-ROM or corrupt state leaves the running machine intact.",
+      "The normal Save State/Load State UI works after fully closing and reopening the app."
+    ],
+    "templates": [
+      {
+        "source": "course/38-save-states/starter.cs.txt",
+        "target": "src/Gba.Core/Common/SaveState.cs"
+      }
+    ]
+  },
+  {
+    "id": "39",
+    "title": "Finding the first wrong step",
+    "folder": "course/39-debugger",
+    "file": "src/Gba.Core/Common/TraceRecorder.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "Tracing enabled versus disabled leaves final guest state identical.",
+      "A breakpoint stops before the target instruction changes registers.",
+      "Inspecting a register/device does not acknowledge IRQs or consume FIFO data.",
+      "The trace wraps within its configured capacity.",
+      "A deliberate fault in a local test fixture is localized to the first wrong step, then removed."
+    ],
+    "templates": [
+      {
+        "source": "course/39-debugger/starter.cs.txt",
+        "target": "src/Gba.Core/Common/TraceRecorder.cs"
+      }
+    ]
+  },
+  {
+    "id": "40",
+    "title": "Making one game reliably playable",
+    "folder": "course/40-compatibility",
+    "file": "src/Gba.Core/Common/CompatibilityNotes.cs",
+    "mode": "observed",
+    "count": 0,
+    "checks": [
+      "A versioned diagnostic set produces repeatable recorded results, including remaining failures.",
+      "Play the chosen section through the normal Open ROM path with responsive controls, graphics, and audio.",
+      "Save in-game, close completely, reopen, and Continue with the same progress.",
+      "Save-state replay remains deterministic after accuracy fixes.",
+      "A measured optimization changes performance without changing fixture outputs.",
+      "Remaining instruction/device/timing gaps are named with a next reproducible case."
+    ],
+    "templates": [
+      {
+        "source": "course/40-compatibility/starter.cs.txt",
+        "target": "src/Gba.Core/Common/CompatibilityNotes.cs"
+      }
+    ]
+  }
+]

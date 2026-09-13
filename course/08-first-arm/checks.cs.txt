@@ -1,0 +1,10 @@
+using Gba.Core.Cpu;
+
+[Trait("Lesson", "08")]
+public class Course08Tests
+{
+[Fact] public void MOV_stores_an_immediate() { var r=new CpuRegisters(); ArmImmediate.Execute(0xE3A00007,r,0); Assert.Equal(7u,r.Read(0)); }
+[Fact] public void Three_instructions_share_registers() { var r=new CpuRegisters(); ArmImmediate.Execute(0xE3A00007,r,0); ArmImmediate.Execute(0xE2801005,r,0); ArmImmediate.Execute(0xE2412002,r,0); Assert.Equal(7u,r.Read(0)); Assert.Equal(12u,r.Read(1)); Assert.Equal(10u,r.Read(2)); }
+[Fact] public void Failed_condition_preserves_state() { var r=new CpuRegisters(); r.Write(0,91); ArmImmediate.Execute(0x03A00007,r,0); Assert.Equal(91u,r.Read(0)); }
+[Fact] public void Unsupported_opcode_is_reported() { Assert.Throws<NotSupportedException>(()=>ArmImmediate.Execute(0xE2000001,new CpuRegisters(),0)); }
+}

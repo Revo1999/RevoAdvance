@@ -1,0 +1,9 @@
+namespace Gba.Core.Cpu;
+
+// Read course/14-stack-transfers/README.md. Choose small methods for the steps below.
+public class BlockTransfer
+{
+    // TODO: Implement STMIA/LDMIA for nonempty lists with base outside the list.
+    // TODO: Add the other address modes and explicit writeback; route transfers through the bus in order.
+    // TODO: Connect Thumb PUSH/POP to this behavior, including LR saving and PC restoration, then extend low-register Thumb loads/stores.
+}

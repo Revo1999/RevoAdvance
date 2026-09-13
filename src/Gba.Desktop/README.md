@@ -1,5 +1,5 @@
 # Gba.Desktop
 
-The only C# statement prints a scaffold message. Replace it yourself when building the host. Window creation, Vulkan, physical input, audio output, ROM file loading and lifecycle belong here. Read [architecture](../../ARCHITECTURE.md).
+This is the host: window, physical input, audio output, file loading, and lifecycle. It currently prints a placeholder message. Its guided course steps begin with [showing the framebuffer](../../course/28-desktop-display/README.md), then [session controls](../../course/30-play-controls/README.md).
 
-Required host exercises: [Open ROM and play](../../docs/12-cartridges-and-roms/loading-and-playing.md), then [persist saves and resume](../../docs/12-cartridges-and-roms/saving-and-resuming.md). Include pause/resume, reset, safe ROM switching and later Save State/Load State. Read [file I/O](../../docs/csharp-and-dotnet/file-io.md) before implementing file access.
+Setup, package configuration, and window/audio backend plumbing can be supplied as assistance. The course focuses your coding on the emulator behavior and its connection to the host. Follow `learn.cmd`; there is no separate architecture reading requirement.

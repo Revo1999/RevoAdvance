@@ -1,5 +1,7 @@
 # Exactly how to run and test your work
 
+**Prefer the [everyday workflow](daily-workflow.md):** `.\dev.cmd run`, `.\dev.cmd test`, `.\dev.cmd watch`, and `.\dev.cmd lab` handle the setup and project paths below. Double-click `dev.cmd` for a menu. This page documents the underlying commands for optional troubleshooting and special cases; you do not need to memorize them.
+
 Commands go in **PowerShell**, C# goes in `.cs` files, and project XML goes in `.csproj` files. Save a file before running its command. A command uses the version on disk, not unsaved text in your editor.
 
 ## Start every new terminal here

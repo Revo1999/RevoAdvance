@@ -1,0 +1,9 @@
+namespace Gba.Core.Ppu;
+
+// Read course/25-sprites/README.md. Choose small methods for the steps below.
+public class Objects
+{
+    // TODO: Read one regular square object and sample its tile pixels through OBJ palette memory.
+    // TODO: Add flips and wrapped positions, then size/shape combinations and 1D/2D tile mapping.
+    // TODO: Evaluate multiple OAM entries with priority and index ties; keep affine objects as the next lesson’s separate coordinate transform.
+}

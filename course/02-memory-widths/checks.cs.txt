@@ -1,0 +1,10 @@
+using Gba.Core.Memory;
+
+[Trait("Lesson", "02")]
+public class Course02Tests
+{
+[Fact] public void Reads_a_little_endian_halfword() { var r=new Ewram(); r.Write8(0,0x34); r.Write8(1,0x12); Assert.Equal((ushort)0x1234,new RamWords(r).Read16(0)); }
+[Fact] public void Writes_low_byte_first() { var r=new Ewram(); new RamWords(r).Write16(2,0xBEEF); Assert.Equal((byte)0xEF,r.Read8(2)); Assert.Equal((byte)0xBE,r.Read8(3)); }
+[Fact] public void Reads_a_little_endian_word() { var r=new Ewram(); r.Write8(0,0x78); r.Write8(1,0x56); r.Write8(2,0x34); r.Write8(3,0x12); Assert.Equal(0x12345678u,new RamWords(r).Read32(0)); }
+[Fact] public void Writes_all_four_bytes() { var r=new Ewram(); new RamWords(r).Write32(4,0xFEDCBA98); Assert.Equal(new byte[]{0x98,0xBA,0xDC,0xFE},new[]{r.Read8(4),r.Read8(5),r.Read8(6),r.Read8(7)}); }
+}

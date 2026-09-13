@@ -1,0 +1,9 @@
+namespace Gba.Core.Cartridge;
+
+// Read course/32-flash/README.md. Choose small methods for the steps below.
+public class FlashSave
+{
+    // TODO: Implement unlock tracking, ID read mode, and reset-to-read for one named Flash profile.
+    // TODO: Add byte programming and sector/chip erase using that profile’s protocol and geometry.
+    // TODO: Add 128 KiB banking as a separate profile, then connect storage persistence through the SRAM lesson’s host mechanism.
+}

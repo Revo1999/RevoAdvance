@@ -1,0 +1,5 @@
+namespace Gba.Core.Cpu;
+public static class Conditions
+{
+    public static bool Matches(int condition, uint cpsr) => throw new NotImplementedException();
+}

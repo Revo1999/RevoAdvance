@@ -1,0 +1,8 @@
+namespace Gba.Core.Cpu;
+public static class ArmFields
+{
+    public static int Opcode(uint word) => throw new NotImplementedException();
+    public static int Rn(uint word) => throw new NotImplementedException();
+    public static int Rd(uint word) => throw new NotImplementedException();
+    public static bool SetsFlags(uint word) => throw new NotImplementedException();
+}

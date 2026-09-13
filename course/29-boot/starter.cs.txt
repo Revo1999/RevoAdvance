@@ -1,0 +1,9 @@
+namespace Gba.Core.Cartridge;
+
+// Read course/29-boot/README.md. Choose small methods for the steps below.
+public class BootSession
+{
+    // TODO: Connect a byte image to RomImage and guest ROM address windows; preserve ROM as read-only input.
+    // TODO: Define a synthetic boot fixture with explicit PC, SP, mode, instruction state, RAM, and expected final signature.
+    // TODO: Run a supplied/owned BIOS or a clearly scoped alternative, then diagnose the first divergence for a selected diagnostic or game.
+}

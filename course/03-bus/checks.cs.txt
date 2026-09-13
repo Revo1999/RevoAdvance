@@ -1,0 +1,10 @@
+using Gba.Core.Memory;
+
+[Trait("Lesson", "03")]
+public class Course03Tests
+{
+[Fact] public void Routes_to_the_original_RAM() { var r=new Ewram(); var b=new MemoryBus(r); b.Write8(0x02000007,42); Assert.Equal((byte)42,r.Read8(7)); Assert.Equal((byte)42,b.Read8(0x02000007)); }
+[Fact] public void Mirrors_share_storage() { var b=new MemoryBus(new Ewram()); b.Write8(0x02000007,93); Assert.Equal((byte)93,b.Read8(0x02040007)); }
+[Fact] public void Region_end_maps_to_last_byte() { var r=new Ewram(); var b=new MemoryBus(r); b.Write8(0x02FFFFFF,81); Assert.Equal((byte)81,r.Read8(262143)); }
+[Fact] public void Unsupported_regions_are_reported() { var b=new MemoryBus(new Ewram()); Assert.Throws<ArgumentOutOfRangeException>(()=>b.Read8(0x01FFFFFF)); Assert.Throws<ArgumentOutOfRangeException>(()=>b.Write8(0x03000000,1)); }
+}

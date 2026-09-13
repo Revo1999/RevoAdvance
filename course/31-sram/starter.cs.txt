@@ -1,0 +1,9 @@
+namespace Gba.Core.Cartridge;
+
+// Read course/31-sram/README.md. Choose small methods for the steps below.
+public class SramSave
+{
+    // TODO: Implement configured SRAM byte storage and guest bus routing; keep it separate from ROM.
+    // TODO: Add load/export snapshots and dirty tracking; supply host file persistence plumbing if needed.
+    // TODO: Integrate save loading/flushing with Open ROM, reset, switching games, and orderly close.
+}

@@ -1,0 +1,9 @@
+namespace Gba.Core.Common;
+
+// Read course/39-debugger/README.md. Choose small methods for the steps below.
+public class TraceRecorder
+{
+    // TODO: Capture a bounded trace around CPU steps and significant device events.
+    // TODO: Add address breakpoints/single-step and a side-effect-free inspection path for supported devices.
+    // TODO: Compare a small deterministic fixture against a trusted trace/expected states and stop at the first mismatch.
+}

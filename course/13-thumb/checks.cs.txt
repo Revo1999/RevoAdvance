@@ -1,0 +1,9 @@
+using Gba.Core.Cpu;
+
+[Trait("Lesson", "13")]
+public class Course13Tests
+{
+[Fact] public void MOV_preserves_carry_overflow_and_control() { var r=new CpuRegisters(); uint s=ThumbImmediate.Execute(0x2509,r,0xF000003F); Assert.Equal(9u,r.Read(5)); Assert.Equal(0x3000003Fu,s); }
+[Fact] public void Immediate_sequence_updates_shared_state() { var r=new CpuRegisters(); uint s=ThumbImmediate.Execute(0x2007,r,0x3F); s=ThumbImmediate.Execute(0x3005,r,s); s=ThumbImmediate.Execute(0x3802,r,s); Assert.Equal(10u,r.Read(0)); Assert.Equal(0x2000003Fu,s); }
+[Fact] public void CMP_sets_flags_without_writing() { var r=new CpuRegisters(); r.Write(2,9); uint s=ThumbImmediate.Execute(0x2A09,r,0x3F); Assert.Equal(9u,r.Read(2)); Assert.Equal(0x6000003Fu,s); }
+}

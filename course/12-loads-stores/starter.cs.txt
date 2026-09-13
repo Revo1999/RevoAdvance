@@ -1,0 +1,9 @@
+namespace Gba.Core.Cpu;
+
+// Read course/12-loads-stores/README.md. Choose small methods for the steps below.
+public class SingleTransfer
+{
+    // TODO: Add RAM width access to MemoryBus, then implement immediate pre-indexed LDR/STR and byte variants.
+    // TODO: Connect decoding to the CPU and preserve the condition check before any memory side effect.
+    // TODO: Add post-index/writeback and unaligned word-load rotation. Expand halfword/signed transfers as separate small cases, using their distinct encodings.
+}

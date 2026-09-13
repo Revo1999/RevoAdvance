@@ -1,0 +1,9 @@
+namespace Gba.Core.Common;
+
+// Read course/38-save-states/README.md. Choose small methods for the steps below.
+public class SaveState
+{
+    // TODO: Capture an owned snapshot of all guest state and restore it into a compatible machine.
+    // TODO: Add version/ROM validation and host file slots; reject malformed/incompatible files before changing the current session.
+    // TODO: Decide and show how loading an older state affects later cartridge-save persistence. Refill host output buffers from restored guest state.
+}

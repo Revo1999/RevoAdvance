@@ -1,0 +1,9 @@
+namespace Gba.Core.Apu;
+
+// Read course/36-direct-sound/README.md. Choose small methods for the steps below.
+public class DirectSound
+{
+    // TODO: Implement each FIFO’s fixed-capacity queue and four-byte writes.
+    // TODO: Connect selected timer overflows to sample consumption, reset behavior, and DMA refill requests.
+    // TODO: Add special FIFO DMA semantics and route A/B sample levels into the guest mixer.
+}

@@ -1,0 +1,9 @@
+namespace Gba.Core.Ppu;
+
+// Read course/24-tiles/README.md. Choose small methods for the steps below.
+public class TextBackground
+{
+    // TODO: Render a synthetic 8×8 4bpp tile through your palette and GbaColor converter.
+    // TODO: Read map entries to select tiles and implement H/V flip plus palette bank.
+    // TODO: Add scrolling, 8bpp, and 256/512-pixel map sizes one fixture at a time; connect BG control registers through the bus.
+}

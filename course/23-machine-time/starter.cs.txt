@@ -1,0 +1,9 @@
+namespace Gba.Core.Common;
+
+// Read course/23-machine-time/README.md. Choose small methods for the steps below.
+public class GbaMachine
+{
+    // TODO: Connect CPU fetch/decode/execute to the bus and define what one Step returns. Add IWRAM, ROM, BIOS storage, and required I/O routing as separate regions.
+    // TODO: Advance timing and timers by consumed cycles; deliver HBlank/VBlank/timer events to DMA and IRQ in a documented order.
+    // TODO: Expand to all four timers with cascade; add HALT and distinguish it from host pause. Keep hardware state changes in one controlled thread initially.
+}

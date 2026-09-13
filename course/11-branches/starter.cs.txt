@@ -1,0 +1,9 @@
+namespace Gba.Core.Cpu;
+
+// Read course/11-branches/README.md. Choose small methods for the steps below.
+public class BranchUnit
+{
+    // TODO: Add an instruction-address field to your CPU integration and one consistent visible-PC helper.
+    // TODO: Implement ARM B/BL: decode displacement, optionally write LR, and replace the next fetch address.
+    // TODO: Implement BX with state exchange and correct target alignment. Keep a sequential path for a failed condition.
+}

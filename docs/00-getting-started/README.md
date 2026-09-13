@@ -1,5 +1,9 @@
 # Start here: one small experiment
 
+**The simpler starting path is now [one GBA memory lesson](../../START-HERE.md).** It includes the required C# and ready-made checks. This older page is optional practice.
+
+**Easy run controls:** use `.\dev.cmd lab` for this page's console examples and `.\dev.cmd test` for your emulator tests. `.\dev.cmd watch` reruns tests on save. These commands replace the terminal setup and long project commands below; follow the [everyday workflow](daily-workflow.md) and focus on the C# exercises.
+
 ## Before the technical details
 
 Begin with [Before you code](before-you-code.md) for setup, the stack explained in plain language, and a separate practice project. A test is just code that compares what happened with what you expected. You can learn that skill before you know anything about the GBA. Start with ordinary integers, then investigate their individual bits.

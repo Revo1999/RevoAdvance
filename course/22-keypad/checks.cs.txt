@@ -1,0 +1,10 @@
+using Gba.Core.Input;
+
+[Trait("Lesson", "22")]
+public class Course22Tests
+{
+[Fact] public void No_buttons_are_all_ones() { var k=new Keypad(); k.SetPressed(0); Assert.Equal((ushort)0x03FF,k.ReadInput()); }
+[Fact] public void A_press_clears_bit_zero() { var k=new Keypad(); k.SetPressed(1); Assert.Equal((ushort)0x03FE,k.ReadInput()); }
+[Fact] public void Releasing_one_button_preserves_the_other() { var k=new Keypad(); k.SetPressed(9); Assert.Equal((ushort)0x03F6,k.ReadInput()); k.SetPressed(8); Assert.Equal((ushort)0x03F7,k.ReadInput()); }
+[Fact] public void Only_ten_button_bits_are_exposed() { var k=new Keypad(); k.SetPressed(0xFC00); Assert.Equal((ushort)0x03FF,k.ReadInput()); }
+}

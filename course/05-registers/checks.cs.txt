@@ -1,0 +1,10 @@
+using Gba.Core.Cpu;
+
+[Trait("Lesson", "05")]
+public class Course05Tests
+{
+[Fact] public void Registers_keep_32_bits() { var r=new CpuRegisters(); r.Write(0,0xFEDCBA98); Assert.Equal(0xFEDCBA98u,r.Read(0)); }
+[Fact] public void R15_has_storage() { var r=new CpuRegisters(); r.Write(15,0x08000000); Assert.Equal(0x08000000u,r.Read(15)); }
+[Fact] public void Register_slots_are_independent() { var r=new CpuRegisters(); r.Write(0,12); r.Write(1,34); Assert.Equal(12u,r.Read(0)); Assert.Equal(34u,r.Read(1)); }
+[Fact] public void CPU_objects_are_independent() { var a=new CpuRegisters(); var b=new CpuRegisters(); a.Write(0,12); b.Write(0,34); Assert.Equal(12u,a.Read(0)); }
+}

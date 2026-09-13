@@ -1,0 +1,9 @@
+namespace Gba.Core.Dma;
+
+// Read course/21-dma/README.md. Choose small methods for the steps below.
+public class DmaChannel
+{
+    // TODO: Implement one nonzero immediate halfword copy through MemoryBus; add word width next.
+    // TODO: Advance latched addresses according to transfer width, then add decrement/fixed/destination-reload behavior.
+    // TODO: Connect four channels to scheduler triggers and completion IRQ; add repeat and zero-count decoding as separate cases.
+}

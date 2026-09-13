@@ -1,0 +1,10 @@
+namespace Gba.Core.Interrupts;
+public class InterruptController
+{
+    public ushort Enabled { get; set; }
+    public bool MasterEnabled { get; set; }
+    public ushort Pending => throw new NotImplementedException();
+    public void Request(ushort sources) => throw new NotImplementedException();
+    public void Acknowledge(ushort sources) => throw new NotImplementedException();
+    public bool ShouldTakeIrq(bool cpuMasked) => throw new NotImplementedException();
+}

@@ -1,0 +1,9 @@
+namespace Gba.Core.Cartridge;
+
+// Read course/33-eeprom/README.md. Choose small methods for the steps below.
+public class EepromSave
+{
+    // TODO: Decode read/write command framing for one configured EEPROM size using the reference’s bit sequence.
+    // TODO: Collect address/data bits and implement block write plus dummy/read-data output.
+    // TODO: Add the second capacity, bus/DMA routing, and persistence without confusing EEPROM commands with ROM reads.
+}
