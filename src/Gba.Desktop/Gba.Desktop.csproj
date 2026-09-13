@@ -2,6 +2,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Gba.Core\Gba.Core.csproj" />
+    <Content Include="..\..\roms\gba_bios.bin" Condition="Exists('..\..\roms\gba_bios.bin')">
+      <Link>roms\gba_bios.bin</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <PropertyGroup>

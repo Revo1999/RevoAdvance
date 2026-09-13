@@ -5,5 +5,5 @@ public class BootSession
 {
     // TODO: Connect a byte image to RomImage and guest ROM address windows; preserve ROM as read-only input.
     // TODO: Define a synthetic boot fixture with explicit PC, SP, mode, instruction state, RAM, and expected final signature.
-    // TODO: Run a supplied/owned BIOS or a clearly scoped alternative, then diagnose the first divergence for a selected diagnostic or game.
+    // TODO: Load the local BIOS through the supplied desktop BiosFile.Load() helper, pass its bytes into Core, and map its 16 KiB at guest addresses 00000000–00003FFF. Execute it with your CPU, then diagnose the first divergence for a selected diagnostic or game.
 }

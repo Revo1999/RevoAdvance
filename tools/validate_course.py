@@ -30,7 +30,7 @@ for item in catalog:
 scratch = root / '.work/course-validation'
 scratch.mkdir(parents=True, exist_ok=True)
 for name in ['GbaEmulator.sln', 'global.json', 'src/Gba.Core/Gba.Core.csproj',
-             'src/Gba.Desktop/Gba.Desktop.csproj', 'src/Gba.Desktop/Program.cs',
+             'src/Gba.Desktop/Gba.Desktop.csproj', 'src/Gba.Desktop/Program.cs', 'src/Gba.Desktop/BiosFile.cs',
              'tests/Gba.Core.Tests/Gba.Core.Tests.csproj',
              'src/Gba.Core/Memory/Ewram.cs', 'tests/Gba.Core.Tests/EwramTests.cs']:
     target = scratch / name
@@ -61,7 +61,7 @@ print(f'Unfinished starters: {sum(r.get("outcome") == "Failed" for r in results)
 smoke = root / '.work/course-runner-validation'
 smoke.mkdir(parents=True, exist_ok=True)
 for name in ['GbaEmulator.sln', 'global.json', 'src/Gba.Core/Gba.Core.csproj',
-             'src/Gba.Desktop/Gba.Desktop.csproj', 'src/Gba.Desktop/Program.cs',
+             'src/Gba.Desktop/Gba.Desktop.csproj', 'src/Gba.Desktop/Program.cs', 'src/Gba.Desktop/BiosFile.cs',
              'tests/Gba.Core.Tests/Gba.Core.Tests.csproj', 'tools/course.ps1']:
     target = smoke / name
     target.parent.mkdir(parents=True, exist_ok=True)

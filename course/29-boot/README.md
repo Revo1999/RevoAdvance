@@ -4,6 +4,8 @@
 
 Double-click **learn.cmd in this folder** to select this lesson, or continue in the root launcher. It prepares missing starter/check files and shows your current file. Existing code is preserved. **O** opens this page; **N** goes to the next lesson after checking your work.
 
+Your local firmware goes in **`roms/gba_bios.bin`**. The desktop build copies it automatically, and **`BiosFile.Load()`** returns its validated bytes. This host helper is already supplied. You do not write or recreate the BIOS. It stays local rather than being included in Git.
+
 ## The GBA behavior
 
 A ROM image does not run until the CPU has a deliberate starting state and can fetch it through the bus. Map cartridge reads at 08000000 and the other wait-state windows as appropriate. BIOS code normally provides initialization and services; starting directly at ROM requires an explicit alternative boot contract. Begin with a synthetic instruction sequence in RAM or ROM, then a diagnostic, and only then a chosen game. Do not pretend that setting PC alone reproduces BIOS startup.
@@ -23,7 +25,7 @@ The starter supplies structure, not the emulator behavior. For later lessons you
 
 1. Connect a byte image to RomImage and guest ROM address windows; preserve ROM as read-only input.
 2. Define a synthetic boot fixture with explicit PC, SP, mode, instruction state, RAM, and expected final signature.
-3. Run a supplied/owned BIOS or a clearly scoped alternative, then diagnose the first divergence for a selected diagnostic or game.
+3. Load the local BIOS through the supplied desktop BiosFile.Load() helper, pass its bytes into Core, and map its 16 KiB at guest addresses 00000000–00003FFF. Execute it with your CPU, then diagnose the first divergence for a selected diagnostic or game.
 
 ## Check it
 
